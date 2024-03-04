@@ -1,5 +1,6 @@
 ﻿using Dollet.ViewModels;
 using Microsoft.Extensions.Logging;
+using Dollet.Core;
 
 namespace Dollet
 {
@@ -19,11 +20,9 @@ namespace Dollet
             builder.Services.AddSingleton((e) => Connectivity.Current);
             //builder.Services.AddSingleton<IToast>((e) => new Toaster());
 
-            builder.Services.AddSingleton<MainPageViewModel>();
-            builder.Services.AddTransient<DetailPageViewModel>();
-
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddTransient<DetailPage>();
+            builder.Services.AddViewModels();
+            builder.Services.AddPages();
+            builder.Services.AddCore();
 
 #if DEBUG
             builder.Logging.AddDebug();

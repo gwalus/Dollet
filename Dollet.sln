@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{03D57FB2-651D-46F4-9BD3-A38DA301158A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7BA28E01-24A7-4917-B035-E24D177F323E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maui", "src\Dollet.Presentation\Maui\Maui.csproj", "{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dollet.Core", "src\Dollet.Core\Dollet.Core.csproj", "{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7BA28E01-24A7-4917-B035-E24D177F323E} = {03D57FB2-651D-46F4-9BD3-A38DA301158A}
+		{8B783342-C90C-4A59-9BCB-5E59EFDC5D6A} = {7BA28E01-24A7-4917-B035-E24D177F323E}
+		{EEF864F4-3E7A-4C40-B96B-5F23B0EE5A7B} = {03D57FB2-651D-46F4-9BD3-A38DA301158A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDB19C57-BE2A-4E75-989A-99A88EBF1BA2}
+	EndGlobalSection
+EndGlobal
