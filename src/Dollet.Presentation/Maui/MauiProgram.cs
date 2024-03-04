@@ -18,7 +18,6 @@ namespace Dollet
                 });
 
             builder.Services.AddSingleton((e) => Connectivity.Current);
-            //builder.Services.AddSingleton<IToast>((e) => new Toaster());
 
             builder.Services.AddViewModels();
             builder.Services.AddPages();
