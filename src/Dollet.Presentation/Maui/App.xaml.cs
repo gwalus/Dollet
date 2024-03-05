@@ -1,12 +1,14 @@
-﻿namespace Dollet
+﻿using Dollet.Pages;
+
+namespace Dollet
 {
     public partial class App : Application
     {
-        public App()
+        public App(HomePage homePage)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = homePage;
         }
     }
 }

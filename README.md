@@ -33,3 +33,5 @@ Description
     
 ## Screenshots
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+dotnet ef migrations add Initial --project ..\..\Dollet.Core\Dollet.Core.csproj --output DAL/Migrations

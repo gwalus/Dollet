@@ -1,6 +1,4 @@
-﻿using Dollet.ViewModels;
-using Microsoft.Extensions.Logging;
-using Dollet.Core;
+﻿using Dollet.Core;
 
 namespace Dollet
 {
@@ -19,13 +17,8 @@ namespace Dollet
 
             builder.Services.AddSingleton((e) => Connectivity.Current);
 
-            builder.Services.AddViewModels();
-            builder.Services.AddPages();
+            builder.Services.AddPresentation();
             builder.Services.AddCore();
-
-#if DEBUG
-            builder.Logging.AddDebug();
-#endif
 
             return builder.Build();
         }

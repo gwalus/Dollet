@@ -33,8 +33,8 @@ namespace Dollet.ViewModels
         [RelayCommand]
         Task Back() => Shell.Current.GoToAsync("..");
 
-        [RelayCommand]
-        Task GoToAnother() =>
-            Shell.Current.GoToAsync($"../{nameof(AnotherPage)}");
+        //[RelayCommand]
+        //Task GoToAnother() =>
+        //    Shell.Current.GoToAsync($"../{nameof(AnotherPage)}");
     }
 }

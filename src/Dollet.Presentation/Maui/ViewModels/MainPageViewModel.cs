@@ -29,13 +29,13 @@ namespace Dollet.ViewModels
             Count += 10;
         }
 
-        [RelayCommand]
-        Task Navigate() =>
-            Shell.Current.GoToAsync($"{nameof(DetailPage)}?Count={Count}",
-                new Dictionary<string, object>
-                {
-                    ["Monkey"] = monkey
-                });
+        //[RelayCommand]
+        //Task Navigate() =>
+        //    Shell.Current.GoToAsync($"{nameof(DetailPage)}?Count={Count}",
+        //        new Dictionary<string, object>
+        //        {
+        //            ["Monkey"] = monkey
+        //        });
 
         [RelayCommand]
         async Task CheckInternet()
@@ -51,6 +51,5 @@ namespace Dollet.ViewModels
                 await Shell.Current.DisplayAlert("Check internet!", $"Current status: {accessType}", "OK");
             }
         }
-
     }
 }

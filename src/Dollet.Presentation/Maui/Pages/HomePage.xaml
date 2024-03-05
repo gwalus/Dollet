@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollet.Pages.HomePage"
+             xmlns:pages="clr-namespace:Dollet.Pages"
+             Title="HomePage">
+
+    <pages:WalletPage IconImageSource="wallet.png"/>
+    <pages:AccountsPage IconImageSource="bank.png"/>
+    <pages:InwestmentsPage IconImageSource="inwestments.png"/>
+    <pages:SettingsPage IconImageSource="settings.png"/>
+</TabbedPage>

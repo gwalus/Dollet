@@ -1,23 +1,30 @@
-﻿using Dollet.ViewModels;
+﻿using Dollet.Pages;
+using Dollet.ViewModels;
 
 namespace Dollet
 {
     internal static class Extensions
     {
-        public static IServiceCollection AddViewModels(this IServiceCollection services)
+        public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
-            services.AddSingleton<MainPageViewModel>();
-            services.AddTransient<DetailPageViewModel>();
+            services.AddPages();
+            services.AddViewModels();
 
             return services;
         }
 
-        public static IServiceCollection AddPages(this IServiceCollection services)
-        {
-            services.AddSingleton<MainPage>();
-            services.AddTransient<DetailPage>();
+        private static IServiceCollection AddPages(this IServiceCollection services) =>
+            services
+                .AddSingleton<HomePage>()
+                .AddSingleton<MainPage>()
+                .AddSingleton<WalletPage>()
+                .AddSingleton<AccountsPage>()
+                .AddSingleton<InwestmentsPage>()
+                .AddSingleton<SettingsPage>();
 
-            return services;
-        }
+        private static IServiceCollection AddViewModels(this IServiceCollection services) => 
+            services
+                .AddSingleton<MainPageViewModel>()
+                .AddTransient<DetailPageViewModel>();
     }
 }
