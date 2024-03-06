@@ -1,5 +1,4 @@
 ﻿using Dollet.Core.DAL;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dollet.Core
 {
@@ -7,8 +6,7 @@ namespace Dollet.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
-            services.AddDbContext<DolletDbContext>(options =>
-                options.UseSqlite("Data Source=dollet.db;"));
+            services.AddDal();
 
             return services;
         }
