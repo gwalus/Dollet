@@ -9,6 +9,7 @@ namespace Dollet
         {
             services.AddPages();
             services.AddViewModels();
+            services.AddCommands();
 
             return services;
         }
@@ -16,15 +17,20 @@ namespace Dollet
         private static IServiceCollection AddPages(this IServiceCollection services) =>
             services
                 .AddSingleton<HomePage>()
-                .AddSingleton<MainPage>()
                 .AddSingleton<WalletPage>()
                 .AddSingleton<AccountsPage>()
                 .AddSingleton<InwestmentsPage>()
                 .AddSingleton<SettingsPage>();
 
-        private static IServiceCollection AddViewModels(this IServiceCollection services) => 
+        private static IServiceCollection AddViewModels(this IServiceCollection services) =>
             services
-                .AddSingleton<MainPageViewModel>()
-                .AddTransient<DetailPageViewModel>();
+                .AddSingleton<HomePageViewModel>()
+                .AddSingleton<WalletPageViewModel>()
+                .AddSingleton<InwestmentsPageViewModel>()
+                .AddSingleton<AccountsPageViewModel>()
+                .AddSingleton<SettingsPageViewModel>();
+
+        private static IServiceCollection AddCommands(this IServiceCollection services) =>
+            services;
     }
 }
