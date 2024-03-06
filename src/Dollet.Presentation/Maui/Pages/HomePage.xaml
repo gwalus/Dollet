@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollet.Pages.HomePage"
              xmlns:pages="clr-namespace:Dollet.Pages"
-             Title="HomePage">
+             Title="HomePage" 
+             BarBackgroundColor="DimGrey"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <pages:WalletPage IconImageSource="wallet.png"/>
     <pages:AccountsPage IconImageSource="bank.png"/>

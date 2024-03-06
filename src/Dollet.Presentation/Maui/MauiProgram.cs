@@ -1,4 +1,5 @@
 ﻿using Dollet.Core;
+using Dollet.Infrastructure;
 
 namespace Dollet
 {
@@ -19,6 +20,7 @@ namespace Dollet
 
             builder.Services.AddPresentation();
             builder.Services.AddCore();
+            builder.Services.AddInfrastructure();
 
             return builder.Build();
         }
