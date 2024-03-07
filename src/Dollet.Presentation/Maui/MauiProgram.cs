@@ -1,4 +1,5 @@
-﻿using Dollet.Core;
+﻿using CommunityToolkit.Maui;
+using Dollet.Core;
 using Dollet.Infrastructure;
 
 namespace Dollet
@@ -14,7 +15,8 @@ namespace Dollet
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .UseMauiCommunityToolkit();
 
             builder.Services.AddSingleton((e) => Connectivity.Current);
 
