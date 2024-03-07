@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Dollet.Pages.AccountsPage">
+    <!--x:DataType="viewModels:AccountsPageViewModel">-->
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding Appearing2Command}" />
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Accounts Page!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Accounts}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                       Text="{Binding Name}"
+                       FontAttributes="Bold" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <VerticalStackLayout Grid.Row="1">
+            <Button Text="+" Command="{Binding AddAccountCommand}"/>
+        </VerticalStackLayout>
+        
     </VerticalStackLayout>
 </ContentPage>

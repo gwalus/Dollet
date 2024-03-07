@@ -1,4 +1,5 @@
-﻿using Dollet.Pages;
+﻿using Dollet.Commands;
+using Dollet.Pages;
 using Dollet.ViewModels;
 
 namespace Dollet
@@ -31,6 +32,7 @@ namespace Dollet
                 .AddSingleton<SettingsPageViewModel>();
 
         private static IServiceCollection AddCommands(this IServiceCollection services) =>
-            services;
+            services
+                .AddTransient<AddAccountCommand>();
     }
 }
