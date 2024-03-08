@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Dollet.Commands;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
+using System.Collections.ObjectModel;
 
 namespace Dollet.ViewModels
 {
@@ -10,44 +10,28 @@ namespace Dollet.ViewModels
     {
         private readonly IAccountRepository _accountRepository;
 
-        public AddAccountCommand AddAccountCommand { get; }
-
-        public AccountsPageViewModel(AddAccountCommand addAccount, IAccountRepository accountRepository)
+        public AccountsPageViewModel(IAccountRepository accountRepository)
         {
-            AddAccountCommand = addAccount;
             _accountRepository = accountRepository;
         }
 
-        [ObservableProperty]
-        public IEnumerable<Account> accounts = new List<Account>
-        {
-            new Account
-            {
-                Icon = "1",
-                Color = "Red",
-                Name = "Main"
-            },
-            new Account
-            {
-                Icon = "1",
-                Color = "Red",
-                Name = "Main2"
-            },
-            new Account
-            {
-                Icon = "1",
-                Color = "Red",
-                Name = "Main3"
-            }
-        };
-
+        public ObservableCollection<Account> Accounts { get; private set; } = [];
 
         [RelayCommand]
-        async Task OnAppearing2(EventArgs eventArgs)
+        async Task OnAppearing(EventArgs eventArgs)
         {
-            //var abc = await _accountRepository.GetAllAsync();
+            var results = await _accountRepository.GetAllAsync();
 
-            //accounts = abc;
+            foreach (var item in results)
+            {
+                Accounts.Add(item);
+            }
+        }
+
+        [RelayCommand]
+        async Task AddAccount(EventArgs eventArgs)
+        {
+
         }
     }
 }
