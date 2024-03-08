@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Dollet.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Dollet.Pages.AccountsPage">
-    <!--x:DataType="viewModels:AccountsPageViewModel">-->
+             xmlns:models="clr-namespace:Dollet.Core.Entities;assembly=Dollet.Core"
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels"
+             xmlns:converters="clr-namespace:Dollet.Conventers"
+             x:Class="Dollet.Pages.AccountsPage"
+             x:DataType="viewModels:AccountsPageViewModel"
+             Title="Accounts">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Appearing"
-            Command="{Binding Appearing2Command}" />
+            Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
 
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
+    <ContentPage.Resources>
+        <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />    
+    </ContentPage.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <CollectionView Grid.Row="0" ItemsSource="{Binding Accounts}">
+        <Label 
+            Text="Accounts" 
+            HorizontalOptions="Center" 
+            FontSize="24" 
+            TextColor="{DynamicResource White}"
+            Padding="0, 20"/>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Accounts}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0"
-                       Text="{Binding Name}"
-                       FontAttributes="Bold" />
-                    </Grid>
+                <DataTemplate x:DataType="models:Account">
+                    <VerticalStackLayout Margin="10" Spacing="10">
+                        <HorizontalStackLayout Spacing="10">
+                            <toolkit:AvatarView 
+                                Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}" />
+
+                            <Label 
+                                Text="{Binding Name}"
+                                FontSize="20"
+                                VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <VerticalStackLayout Grid.Row="1">
-            <Button Text="+" Command="{Binding AddAccountCommand}"/>
-        </VerticalStackLayout>
-        
-    </VerticalStackLayout>
+        <Button 
+            Grid.Row="2"
+            Text="+" 
+            Margin="10"
+            Command="{Binding AddAccountCommand}"/>
+    </Grid>
 </ContentPage>
