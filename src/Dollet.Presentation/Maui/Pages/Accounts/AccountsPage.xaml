@@ -55,6 +55,6 @@
             Grid.Row="2"
             Text="+" 
             Margin="10"
-            Command="{Binding AddAccountCommand}"/>
+            Command="{Binding NavigateToAddAccountPageCommand}"/>
     </Grid>
 </ContentPage>

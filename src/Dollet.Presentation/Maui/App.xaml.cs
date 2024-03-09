@@ -8,7 +8,7 @@ namespace Dollet
         {
             InitializeComponent();
 
-            MainPage = homePage;
+            MainPage = new NavigationPage(homePage);
         }
     }
 }

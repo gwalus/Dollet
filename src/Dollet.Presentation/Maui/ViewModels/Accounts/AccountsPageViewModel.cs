@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
+using Dollet.Pages;
+using Dollet.Services;
 using System.Collections.ObjectModel;
 
 namespace Dollet.ViewModels
@@ -9,10 +11,12 @@ namespace Dollet.ViewModels
     public partial class AccountsPageViewModel : ObservableObject
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly INavigationService _navigationService;
 
-        public AccountsPageViewModel(IAccountRepository accountRepository)
+        public AccountsPageViewModel(IAccountRepository accountRepository, INavigationService navigationService)
         {
             _accountRepository = accountRepository;
+            _navigationService = navigationService;
         }
 
         public ObservableCollection<Account> Accounts { get; private set; } = [];
@@ -29,9 +33,9 @@ namespace Dollet.ViewModels
         }
 
         [RelayCommand]
-        async Task AddAccount(EventArgs eventArgs)
+        async Task NavigateToAddAccountPage()
         {
-
+            await _navigationService.NavigateToAsync<AddAccountPage>();
         }
     }
 }
