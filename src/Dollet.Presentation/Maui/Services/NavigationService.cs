@@ -32,7 +32,7 @@ namespace Dollet.Services
             throw new InvalidOperationException($"Unable to resolve type {typeof(T).FullName}");
         }
 
-        public Task NavigateBack()
+        public Task NavigateBackAsync()
         {
             if (Navigation.NavigationStack.Count > 1)
                 return Navigation.PopAsync();
