@@ -6,13 +6,16 @@
              xmlns:viewModels="clr-namespace:Dollet.ViewModels"
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:Class="Dollet.Pages.AccountsPage"
-             x:DataType="viewModels:AccountsPageViewModel"
-             Title="Accounts">
+             x:DataType="viewModels:AccountsPageViewModel">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Appearing"
             Command="{Binding AppearingCommand}" />
+        
+        <toolkit:EventToCommandBehavior
+            EventName="NavigatedTo"
+            Command="{Binding NavigatedToCommand}" />
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>

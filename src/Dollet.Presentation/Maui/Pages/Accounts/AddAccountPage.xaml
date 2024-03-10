@@ -2,11 +2,106 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollet.Pages.AddAccountPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels.Accounts"
+             xmlns:converters="clr-namespace:Dollet.Conventers"
+             x:DataType="viewModels:AddAccountPageViewModel"
              Title="AddAccountPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.Resources>
+        <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
+
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30, 10" Spacing="15">
+            <Label Text="Ammount"/>
+            <Entry 
+                Placeholder="Enter account ammount" 
+                Keyboard="Numeric"
+                Text="{Binding Ammount}">
+
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior 
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        Flags="ValidateOnValueChanged"
+                        MinimumValue="0.00"
+                        MaximumDecimalPlaces="2" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label 
+                Text="Account name"/>
+            <Entry 
+                Placeholder="Enter account name"
+                Text="{Binding Name}"/>
+
+            <Label Text="Icon"/>
+
+            <CollectionView 
+                SelectionMode="Single"
+                ItemsSource="{Binding Icons}"
+                SelectedItem="{Binding SelectedIcon}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                            <toolkit:AvatarView 
+                                Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}"
+                                VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Color"/>
+            <CollectionView 
+                SelectionMode="Single"
+                ItemsSource="{Binding Colors}"
+                SelectedItem="{Binding SelectedColor}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                            <Ellipse BackgroundColor="{Binding}"
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                HorizontalOptions="Start" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Currency"/>
+            <Picker 
+                Title="Select currency"
+                ItemsSource="{Binding Currencies}"
+                SelectedItem="{Binding SelectedCurrency}"/>
+
+            <HorizontalStackLayout>
+                <Label Text="Is sumable?" VerticalOptions="Center"/>
+                <Switch />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Is hidden?" VerticalOptions="Center"/>
+                <Switch />
+            </HorizontalStackLayout>
+            
+            <Button 
+                Text="Add"
+                Command="{Binding AddAccountCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
