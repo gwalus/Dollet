@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\bank.png" />
 	  <None Remove="Resources\Images\inwestments.png" />
 	  <None Remove="Resources\Images\settings.png" />
@@ -64,9 +65,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AathifMahir.Maui.MauiIcons.Core" Version="2.1.1" />
-		<PackageReference Include="AathifMahir.Maui.MauiIcons.FontAwesome" Version="2.1.1" />
-		<PackageReference Include="AathifMahir.Maui.MauiIcons.Material" Version="2.1.1" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
