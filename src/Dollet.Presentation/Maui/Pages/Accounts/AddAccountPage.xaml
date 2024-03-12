@@ -6,7 +6,7 @@
              xmlns:viewModels="clr-namespace:Dollet.ViewModels.Accounts"
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:DataType="viewModels:AddAccountPageViewModel"
-             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             xmlns:helpers="clr-namespace:Dollet.Helpers"
              Title="New account">
 
     <ContentPage.Resources>
@@ -57,12 +57,16 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="viewModels:Icon">
                             <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
-                                <toolkit:AvatarView 
-                                    Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}"
+                                <toolkit:AvatarView
+                                    FontFamily="MaterialIconsRegular"
+                                    FontSize="32"
+                                    BorderColor="{DynamicResource Primary}"
+                                    MinimumHeightRequest="60"
+                                    MinimumWidthRequest="60"
+                                    Text="{Binding Value}"
                                     VerticalOptions="Center"/>
-                                <mi:MauiIcon Icon="{mi:Material Icon=Wallet}"/>
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -81,9 +85,10 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
-                                <Ellipse BackgroundColor="{Binding}"
-                                    WidthRequest="40"
-                                    HeightRequest="40"
+                                <Ellipse 
+                                    BackgroundColor="{Binding}"
+                                    WidthRequest="45"
+                                    HeightRequest="45"
                                     HorizontalOptions="Start" />
                             </HorizontalStackLayout>
                         </DataTemplate>
@@ -95,11 +100,6 @@
                     Title="Select currency"
                     ItemsSource="{Binding Currencies}"
                     SelectedItem="{Binding SelectedCurrency}"/>
-
-                <!--<HorizontalStackLayout>
-            <Label Text="Is sumable?" VerticalOptions="Center"/>
-            <Switch />
-        </HorizontalStackLayout>-->
 
                 <HorizontalStackLayout>
                     <Label Text="Is hidden?" VerticalOptions="Center"/>

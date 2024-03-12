@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
+using Dollet.Helpers;
 using Dollet.Services;
 using System.Collections.ObjectModel;
 
@@ -26,14 +27,16 @@ namespace Dollet.ViewModels.Accounts
         {
             _accountRepository = accountRepository;
             _navigationService = navigationService;
-            Icons = new ObservableCollection<Icon>
-            {
-                new Icon { Name = "Wallet" },
-                new Icon { Name = "2" },
-                new Icon { Name = "3" },
-                new Icon { Name = "4" },
-                new Icon { Name = "5" }
-            };
+            Icons =
+            [
+                new Icon { Value = MaterialDesignIconFonts.Wallet },
+                new Icon { Value = MaterialDesignIconFonts.Wallet_giftcard },
+                new Icon { Value = MaterialDesignIconFonts.Wallet_membership },
+                new Icon { Value = MaterialDesignIconFonts.Wallet_travel },
+                new Icon { Value = MaterialDesignIconFonts.Account_balance },
+                new Icon { Value = MaterialDesignIconFonts.Account_balance_wallet },
+                new Icon { Value = MaterialDesignIconFonts.Account_box }
+            ];
 
             Colors = new ObservableCollection<string>
             {
@@ -53,7 +56,7 @@ namespace Dollet.ViewModels.Accounts
             {
                 Ammount = Ammount,
                 Name = Name,
-                Icon = SelectedIcon.Name,
+                Icon = SelectedIcon.Value,
                 Color = SelectedColor,
                 Currency = SelectedCurrency
             });
@@ -68,5 +71,6 @@ namespace Dollet.ViewModels.Accounts
     public class Icon
     {
         public string Name { get; set; }
+        public string Value { get; set; }
     }
 }

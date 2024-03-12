@@ -24,14 +24,7 @@ namespace Dollet.ViewModels
         [RelayCommand]
         async Task OnAppearing(EventArgs eventArgs)
         {
-            //var results = await _accountRepository.GetAllAsync();
 
-            //Accounts.Clear();
-
-            //foreach (var item in results)
-            //{
-            //    Accounts.Add(item);
-            //}
         }
 
         [RelayCommand]
@@ -45,25 +38,6 @@ namespace Dollet.ViewModels
             {
                 Accounts.Add(item);
             }
-
-            //var results = await _accountRepository.GetAllAsync();
-
-            //if (Accounts.Any())
-            //{
-            //    var difference = results.Except(Accounts).ToList();
-
-            //    foreach (var item in difference)
-            //    {
-            //        Accounts.Add(item);
-            //    }
-
-            //    return;
-            //}
-
-            //foreach (var item in results)
-            //{
-            //    Accounts.Add(item);
-            //}
         }
 
         [RelayCommand]

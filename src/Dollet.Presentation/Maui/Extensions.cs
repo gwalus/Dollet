@@ -23,7 +23,7 @@ namespace Dollet
                 .AddSingleton<HomePage>()
                 .AddSingleton<WalletPage>()
                 .AddSingleton<AccountsPage>()
-                .AddSingleton<AddAccountPage>()
+                .AddTransient<AddAccountPage>()
                 .AddSingleton<InwestmentsPage>()
                 .AddSingleton<SettingsPage>();
 
@@ -32,7 +32,7 @@ namespace Dollet
                 .AddSingleton<HomePageViewModel>()
                 .AddSingleton<WalletPageViewModel>()
                 .AddSingleton<AccountsPageViewModel>()
-                .AddSingleton<AddAccountPageViewModel>()
+                .AddTransient<AddAccountPageViewModel>()
                 .AddSingleton<InwestmentsPageViewModel>()
                 .AddSingleton<SettingsPageViewModel>();
 

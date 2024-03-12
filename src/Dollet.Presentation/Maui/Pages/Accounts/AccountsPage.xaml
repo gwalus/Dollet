@@ -30,17 +30,19 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Label 
-            Text="Accounts" 
-            HorizontalOptions="Center" 
-            FontSize="24" 
-            Margin="0, 20"
-            TextColor="{DynamicResource Black}"/>
+        <Border StrokeThickness="1">
+            <Label 
+                Text="Accounts"
+                HorizontalOptions="Center" 
+                FontSize="24" 
+                Margin="0, 20"
+                TextColor="{DynamicResource Black}"/>
+        </Border>
 
         <CollectionView Grid.Row="1" ItemsSource="{Binding Accounts}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Account">
-                    <VerticalStackLayout Margin="10">
+                    <VerticalStackLayout Margin="5">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.4*"/>
@@ -53,24 +55,24 @@
                             </Grid.RowDefinitions>
 
                             <toolkit:AvatarView 
-                                    Grid.RowSpan="2"
-                                    FontSize="24"
-                                    Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}"
-                                    FontFamily="MaterialIcons"
-                                    BackgroundColor="{DynamicResource PrimaryDark}" />
+                                Grid.RowSpan="2"
+                                FontSize="24"
+                                Text="{Binding Icon}"
+                                FontFamily="MaterialIconsRegular"
+                                BackgroundColor="{Binding Color}" />
 
                             <Label 
-                                    Grid.Column="1"
-                                    Text="{Binding Name}"
+                                Grid.Column="1"
+                                Text="{Binding Name}"
                                 FontAttributes="Bold"
-                                    FontSize="20"
+                                FontSize="20"
                                 VerticalOptions="End"/>
 
                             <Label
-                                    Grid.Column="1" Grid.Row="2"
-                                    Text="{Binding Name}"
+                                Grid.Column="1" Grid.Row="2"
+                                Text="{Binding Name}"
                                 FontAttributes="Italic"
-                                    FontSize="14"
+                                FontSize="14"
                                 VerticalOptions="End"/>
 
                             <Label
