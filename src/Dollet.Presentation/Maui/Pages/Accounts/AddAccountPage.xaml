@@ -6,7 +6,8 @@
              xmlns:viewModels="clr-namespace:Dollet.ViewModels.Accounts"
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:DataType="viewModels:AddAccountPageViewModel"
-             Title="AddAccountPage">
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             Title="New account">
 
     <ContentPage.Resources>
         <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
@@ -16,92 +17,101 @@
         </Style>
     </ContentPage.Resources>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30, 10" Spacing="15">
-            <Label Text="Ammount"/>
-            <Entry 
-                Placeholder="Enter account ammount" 
-                Keyboard="Numeric"
-                Text="{Binding Ammount}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-                <Entry.Behaviors>
-                    <toolkit:NumericValidationBehavior 
-                        InvalidStyle="{StaticResource InvalidEntryStyle}"
-                        Flags="ValidateOnValueChanged"
-                        MinimumValue="0.00"
-                        MaximumDecimalPlaces="2" />
-                </Entry.Behaviors>
-            </Entry>
+        <ScrollView>
+            <VerticalStackLayout Padding="30, 10" Spacing="15">
+                <Label Text="Ammount"/>
+                <Entry 
+                    Placeholder="Enter account ammount" 
+                    Keyboard="Numeric"
+                    Text="{Binding Ammount}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="0.00"
+                            MaximumDecimalPlaces="2"/>
+                    </Entry.Behaviors>
+                </Entry>
 
-            <Label 
-                Text="Account name"/>
-            <Entry 
-                Placeholder="Enter account name"
-                Text="{Binding Name}"/>
+                <Label 
+                    Text="Account name"/>
+                <Entry 
+                    Placeholder="Enter account name"
+                    Text="{Binding Name}"/>
 
-            <Label Text="Icon"/>
+                <Label Text="Icon"/>
 
-            <CollectionView 
-                SelectionMode="Single"
-                ItemsSource="{Binding Icons}"
-                SelectedItem="{Binding SelectedIcon}">
+                <CollectionView 
+                    SelectionMode="Single"
+                    ItemsSource="{Binding Icons}"
+                    SelectedItem="{Binding SelectedIcon}">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
-                            <toolkit:AvatarView 
-                                Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}"
-                                VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                                <toolkit:AvatarView 
+                                    Text="{Binding Name, Converter={StaticResource FirstCharacterConverter}}"
+                                    VerticalOptions="Center"/>
+                                <mi:MauiIcon Icon="{mi:Material Icon=Wallet}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-            <Label Text="Color"/>
-            <CollectionView 
-                SelectionMode="Single"
-                ItemsSource="{Binding Colors}"
-                SelectedItem="{Binding SelectedColor}">
+                <Label Text="Color"/>
+                <CollectionView 
+                    SelectionMode="Single"
+                    ItemsSource="{Binding Colors}"
+                    SelectedItem="{Binding SelectedColor}">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
-                            <Ellipse BackgroundColor="{Binding}"
-                                WidthRequest="40"
-                                HeightRequest="40"
-                                HorizontalOptions="Start" />
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                                <Ellipse BackgroundColor="{Binding}"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    HorizontalOptions="Start" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-            <Label Text="Currency"/>
-            <Picker 
-                Title="Select currency"
-                ItemsSource="{Binding Currencies}"
-                SelectedItem="{Binding SelectedCurrency}"/>
+                <Label Text="Currency"/>
+                <Picker 
+                    Title="Select currency"
+                    ItemsSource="{Binding Currencies}"
+                    SelectedItem="{Binding SelectedCurrency}"/>
 
-            <HorizontalStackLayout>
-                <Label Text="Is sumable?" VerticalOptions="Center"/>
-                <Switch />
-            </HorizontalStackLayout>
+                <!--<HorizontalStackLayout>
+            <Label Text="Is sumable?" VerticalOptions="Center"/>
+            <Switch />
+        </HorizontalStackLayout>-->
 
-            <HorizontalStackLayout>
-                <Label Text="Is hidden?" VerticalOptions="Center"/>
-                <Switch />
-            </HorizontalStackLayout>
-            
-            <Button 
-                Text="Add"
-                Command="{Binding AddAccountCommand}"/>
-        </VerticalStackLayout>
-    </ScrollView>
+                <HorizontalStackLayout>
+                    <Label Text="Is hidden?" VerticalOptions="Center"/>
+                    <Switch />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button
+            Grid.Row="1"
+            Text="Add"
+            Margin="15"
+            Command="{Binding AddAccountCommand}"/>
+    </Grid>
 </ContentPage>

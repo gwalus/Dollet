@@ -15,8 +15,8 @@ namespace Dollet.ViewModels.Accounts
         public ObservableCollection<Icon> Icons { get; set; }
         public ObservableCollection<string> Colors { get; set; }
         public ObservableCollection<string> Currencies{ get; set; }
-        
-        public decimal Ammount { get; set; }
+
+        public decimal Ammount { get; set; } = 0.00m;
         public string Name { get; set; }
         public Icon SelectedIcon { get; set; }
         public string SelectedColor { get; set; }
@@ -28,7 +28,7 @@ namespace Dollet.ViewModels.Accounts
             _navigationService = navigationService;
             Icons = new ObservableCollection<Icon>
             {
-                new Icon { Name = "1" },
+                new Icon { Name = "Wallet" },
                 new Icon { Name = "2" },
                 new Icon { Name = "3" },
                 new Icon { Name = "4" },
