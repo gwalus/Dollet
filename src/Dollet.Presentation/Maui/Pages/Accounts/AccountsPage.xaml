@@ -22,28 +22,53 @@
     <ContentPage.Resources>
         <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
     </ContentPage.Resources>
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition />
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <Border StrokeThickness="1">
-            <Label 
+            <Border StrokeThickness="1">
+                <Label 
                 Text="Accounts"
                 HorizontalOptions="Center" 
                 FontSize="24" 
                 Margin="0, 20"
                 TextColor="{DynamicResource Black}"/>
-        </Border>
+            </Border>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Accounts}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Account">
-                    <VerticalStackLayout Margin="5">
-                        <Grid>
+        <Frame Grid.Row="1" Margin="15">
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Label 
+                    Text="Sum:" 
+                    FontSize="Title" 
+                    VerticalOptions="Center"/>
+                <Label 
+                    Text="{Binding AccountsBalance}"
+                    FontSize="Title" 
+                    VerticalOptions="Center"/>
+                <Picker
+                    Title="PLN"
+                    WidthRequest="50"
+                    FontSize="Title"
+                    VerticalOptions="Center"
+                    SelectedItem="{Binding SelectedCurrency, Mode=OneWayToSource}"
+                    ItemsSource="{Binding Currencies}">
+                    <Picker.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding CurrencyChangedCommand}" />
+                    </Picker.Behaviors>
+                </Picker>
+            </HorizontalStackLayout>
+        </Frame>
+
+            <CollectionView Grid.Row="2" ItemsSource="{Binding Accounts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Account">
+                        <Grid Padding="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.4*"/>
                                 <ColumnDefinition Width="*"/>
@@ -92,13 +117,12 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="End"/>
                         </Grid>
-                    </VerticalStackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         <Button 
-            Grid.Row="2"
+            Grid.Row="3"
             Text="+"
             FontSize="28"
             Margin="15"

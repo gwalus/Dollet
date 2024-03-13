@@ -19,7 +19,17 @@ namespace Dollet.ViewModels
             _navigationService = navigationService;
         }
 
+        private decimal _accountsBalanceInDefaultCurrency;
+
+        private decimal accountsBalance;
+
+        public decimal AccountsBalance { get => accountsBalance; set => SetProperty(ref accountsBalance, value); }
+
+        public string SelectedCurrency { get; set; }
+
         public ObservableCollection<Account> Accounts { get; private set; } = [];
+        
+        public ObservableCollection<string> Currencies { get; private set; } = [];
 
         [RelayCommand]
         async Task OnAppearing(EventArgs eventArgs)
@@ -37,6 +47,46 @@ namespace Dollet.ViewModels
             foreach (var item in results)
             {
                 Accounts.Add(item);
+            }
+
+            _accountsBalanceInDefaultCurrency = Accounts.Sum(x => x.Ammount);
+
+            AccountsBalance = _accountsBalanceInDefaultCurrency;
+
+            Currencies.Clear();
+
+            Currencies.Add("PLN");
+            Currencies.Add("EUR");
+            Currencies.Add("USD");
+            Currencies.Add("CHF");
+        }
+
+        [RelayCommand]
+        async Task CurrencyChanged()
+        {
+            // IT'S NOT CORRECTLY, but for test
+            if(SelectedCurrency == "EUR")
+            {
+                AccountsBalance = _accountsBalanceInDefaultCurrency * 4.5m;
+                return;
+            }
+
+            if (SelectedCurrency == "USD")
+            {
+                AccountsBalance = _accountsBalanceInDefaultCurrency * 4.0m;
+                return;
+            }
+
+            if (SelectedCurrency == "CHF")
+            {
+                AccountsBalance = _accountsBalanceInDefaultCurrency * 5.0m;
+                return;
+            }
+
+            if (SelectedCurrency == "PLN")
+            {
+                AccountsBalance = _accountsBalanceInDefaultCurrency;
+                return;
             }
         }
 
