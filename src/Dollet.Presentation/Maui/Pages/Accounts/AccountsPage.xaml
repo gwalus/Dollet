@@ -7,6 +7,7 @@
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:Class="Dollet.Pages.AccountsPage"
              x:DataType="viewModels:AccountsPageViewModel"
+             xmlns:helpers="clr-namespace:Dollet.Helpers"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
@@ -22,22 +23,21 @@
     <ContentPage.Resources>
         <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
     </ContentPage.Resources>
-    <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
 
-            <Border StrokeThickness="1">
-                <Label 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border StrokeThickness="1">
+            <Label 
                 Text="Accounts"
                 HorizontalOptions="Center" 
                 FontSize="24" 
-                Margin="0, 20"
-                TextColor="{DynamicResource Black}"/>
-            </Border>
+                Margin="0, 15"/>
+        </Border>
 
         <Frame Grid.Row="1" Margin="15">
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
@@ -56,6 +56,7 @@
                     VerticalOptions="Center"
                     SelectedItem="{Binding SelectedCurrency, Mode=OneWayToSource}"
                     ItemsSource="{Binding Currencies}">
+                    
                     <Picker.Behaviors>
                         <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
@@ -65,7 +66,8 @@
             </HorizontalStackLayout>
         </Frame>
 
-            <CollectionView Grid.Row="2" ItemsSource="{Binding Accounts}">
+        <Grid Grid.Row="2">
+            <CollectionView ItemsSource="{Binding Accounts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Account">
                         <Grid Padding="5">
@@ -81,7 +83,7 @@
 
                             <toolkit:AvatarView 
                                 Grid.RowSpan="2"
-                                FontSize="24"
+                                FontSize="26"
                                 Text="{Binding Icon}"
                                 FontFamily="MaterialIconsRegular"
                                 BackgroundColor="{Binding Color}" />
@@ -121,15 +123,18 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-        <Button 
-            Grid.Row="3"
-            Text="+"
-            FontSize="28"
-            Margin="15"
-            WidthRequest="60"
-            HeightRequest="60"
-            CornerRadius="50"
-            BackgroundColor="{DynamicResource Gray500}"
-            Command="{Binding NavigateToAddAccountPageCommand}"/>
+            <Button 
+                Text="{x:Static helpers:MaterialDesignIconFonts.Add}"
+                FontFamily="MaterialIconsRegular"
+                FontSize="32"
+                Margin="15"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="50"
+                ZIndex="1"
+                VerticalOptions="End"
+                BackgroundColor="{DynamicResource PrimaryLight}"
+                Command="{Binding NavigateToAddAccountPageCommand}"/>
+        </Grid>
     </Grid>
 </ContentPage>
