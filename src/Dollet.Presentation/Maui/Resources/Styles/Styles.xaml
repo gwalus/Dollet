@@ -74,7 +74,8 @@
                     <VisualState Name="Normal"></VisualState>
                     <VisualState Name="Selected">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGray"/>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource White}}"/>
+                            <Setter Property="Padding" Value="3"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
