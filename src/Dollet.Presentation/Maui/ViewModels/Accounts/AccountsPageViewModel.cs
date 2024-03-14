@@ -64,22 +64,28 @@ namespace Dollet.ViewModels
         [RelayCommand]
         async Task CurrencyChanged()
         {
-            // IT'S NOT CORRECTLY, but for test
-            if(SelectedCurrency == "EUR")
+            if (_accountsBalanceInDefaultCurrency == 0)
             {
-                AccountsBalance = _accountsBalanceInDefaultCurrency * 4.5m;
+                AccountsBalance = 0;
+                return;
+            }
+
+            // IT'S NOT CORRECTLY, but for test
+            if (SelectedCurrency == "EUR")
+            {
+                AccountsBalance = _accountsBalanceInDefaultCurrency / 4.5m;
                 return;
             }
 
             if (SelectedCurrency == "USD")
             {
-                AccountsBalance = _accountsBalanceInDefaultCurrency * 4.0m;
+                AccountsBalance = _accountsBalanceInDefaultCurrency / 4.0m;
                 return;
             }
 
             if (SelectedCurrency == "CHF")
             {
-                AccountsBalance = _accountsBalanceInDefaultCurrency * 5.0m;
+                AccountsBalance = _accountsBalanceInDefaultCurrency / 5.0m;
                 return;
             }
 

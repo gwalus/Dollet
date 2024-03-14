@@ -21,7 +21,7 @@ namespace Dollet.ViewModels.Accounts
         public string Name { get; set; }
         public Icon SelectedIcon { get; set; }
         public string SelectedColor { get; set; }
-        public string SelectedCurrency { get; set; }
+        public string SelectedCurrency { get; set; } = "PLN";
 
         public AddAccountPageViewModel(IAccountRepository accountRepository, INavigationService navigationService)
         {
@@ -29,24 +29,27 @@ namespace Dollet.ViewModels.Accounts
             _navigationService = navigationService;
             Icons =
             [
-                new Icon { Value = MaterialDesignIconFonts.Wallet },
-                new Icon { Value = MaterialDesignIconFonts.Wallet_giftcard },
-                new Icon { Value = MaterialDesignIconFonts.Wallet_membership },
-                new Icon { Value = MaterialDesignIconFonts.Wallet_travel },
                 new Icon { Value = MaterialDesignIconFonts.Account_balance },
                 new Icon { Value = MaterialDesignIconFonts.Account_balance_wallet },
-                new Icon { Value = MaterialDesignIconFonts.Account_box }
+                new Icon { Value = MaterialDesignIconFonts.Wallet },
+                new Icon { Value = MaterialDesignIconFonts.Savings },
+                new Icon { Value = MaterialDesignIconFonts.Credit_card },
+                new Icon { Value = MaterialDesignIconFonts.Paid },
+                new Icon { Value = MaterialDesignIconFonts.Euro },
+                new Icon { Value = MaterialDesignIconFonts.Wallet_giftcard },
+                new Icon { Value = MaterialDesignIconFonts.Currency_exchange }
             ];
 
-            Colors = new ObservableCollection<string>
-            {
-                "Red", "Yellow", "Pink", "Green", "Blue"
-            };
+            Colors =
+            [
+                "#d2b7b7", "#a76e6e", "#88af95", "#819a78", "#7782b0", "#606a9f", "#e39e83", 
+                "#855e5c", "#f7e2a9", "#d3bae1", "#f0e6ab", "#ffc8c8", "#979393", "#fe4f78"
+            ];
 
-            Currencies = new ObservableCollection<string>
-            {
+            Currencies =
+            [
                 "PLN", "EUR", "USD", "CHF", "GBP"
-            };
+            ];
         }
 
         [RelayCommand]
