@@ -39,11 +39,15 @@
                     </Entry.Behaviors>
                 </Entry>
 
-                <Label 
-                    Text="Account name"/>
+                <Label Text="Name"/>
                 <Entry 
                     Placeholder="Enter account name"
                     Text="{Binding Name}"/>
+
+                <Label Text="Description"/>
+                <Entry 
+                    Placeholder="Enter account description"
+                    Text="{Binding Description}"/>
 
                 <Label Text="Icon"/>
 
@@ -103,7 +107,7 @@
 
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <Label Text="Hidden" VerticalOptions="Center"/>
-                    <Switch />
+                    <Switch IsToggled="{Binding IsHidden}"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

@@ -19,9 +19,11 @@ namespace Dollet.ViewModels.Accounts
 
         public decimal Ammount { get; set; } = 0.00m;
         public string Name { get; set; }
+        public string Description { get; set; } = string.Empty;
         public Icon SelectedIcon { get; set; }
         public string SelectedColor { get; set; }
         public string SelectedCurrency { get; set; } = "PLN";
+        public bool IsHidden { get; set; } = false;
 
         public AddAccountPageViewModel(IAccountRepository accountRepository, INavigationService navigationService)
         {
@@ -58,10 +60,12 @@ namespace Dollet.ViewModels.Accounts
             var added = await _accountRepository.AddAsync(new Account
             {
                 Ammount = Ammount,
+                Description = Description,
                 Name = Name,
                 Icon = SelectedIcon.Value,
                 Color = SelectedColor,
-                Currency = SelectedCurrency
+                Currency = SelectedCurrency,
+                IsHidden = IsHidden
             });
 
             if(added)

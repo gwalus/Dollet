@@ -97,7 +97,7 @@
 
                             <Label
                                 Grid.Column="1" Grid.Row="2"
-                                Text="{Binding Name}"
+                                Text="{Binding Description}"
                                 FontAttributes="Italic"
                                 FontSize="14"
                                 VerticalOptions="End"/>
