@@ -28,7 +28,8 @@ namespace Dollet.ViewModels
         public string SelectedCurrency { get; set; }
 
         public ObservableCollection<Account> Accounts { get; private set; } = [];
-        
+        public ObservableCollection<Account> HiddenAccounts { get; private set; } = [];
+
         public ObservableCollection<string> Currencies { get; private set; } = [];
 
         [RelayCommand]
@@ -43,10 +44,19 @@ namespace Dollet.ViewModels
             var results = await _accountRepository.GetAllAsync();
 
             Accounts.Clear();
+            HiddenAccounts.Clear();
 
-            foreach (var item in results)
+            foreach (var item in results.GroupBy(r => r.IsHidden))
             {
-                Accounts.Add(item);
+                foreach (var abc in item)
+                {
+                    if (abc.IsHidden)
+                    {
+                        HiddenAccounts.Add(abc);
+                        continue;
+                    }
+                    Accounts.Add(abc);
+                }
             }
 
             _accountsBalanceInDefaultCurrency = Accounts.Sum(x => x.Ammount);

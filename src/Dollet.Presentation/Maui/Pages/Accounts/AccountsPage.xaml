@@ -28,7 +28,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Border StrokeThickness="1">
@@ -56,7 +56,7 @@
                     VerticalOptions="Center"
                     SelectedItem="{Binding SelectedCurrency, Mode=OneWayToSource}"
                     ItemsSource="{Binding Currencies}">
-                    
+
                     <Picker.Behaviors>
                         <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
@@ -67,61 +67,131 @@
         </Frame>
 
         <Grid Grid.Row="2">
-            <CollectionView ItemsSource="{Binding Accounts}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Account">
-                        <Grid Padding="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.4*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="0.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
+            <VerticalStackLayout>
+                <CollectionView ItemsSource="{Binding Accounts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Account">
+                            <Grid Padding="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
 
-                            <toolkit:AvatarView 
-                                Grid.RowSpan="2"
-                                FontSize="26"
-                                Text="{Binding Icon}"
-                                FontFamily="MaterialIconsRegular"
-                                BackgroundColor="{Binding Color}" />
+                                <toolkit:AvatarView 
+                                    Grid.RowSpan="2"
+                                    FontSize="26"
+                                    Text="{Binding Icon}"
+                                    FontFamily="MaterialIconsRegular"
+                                    BackgroundColor="{Binding Color}" />
 
-                            <Label 
-                                Grid.Column="1"
-                                Text="{Binding Name}"
-                                FontAttributes="Bold"
-                                FontSize="20"
-                                VerticalOptions="End"/>
+                                <Label 
+                                    Grid.Column="1"
+                                    Text="{Binding Name}"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    VerticalOptions="End"/>
 
-                            <Label
-                                Grid.Column="1" Grid.Row="2"
-                                Text="{Binding Description}"
-                                FontAttributes="Italic"
-                                FontSize="14"
-                                VerticalOptions="End"/>
+                                <Label
+                                    Grid.Column="1" Grid.Row="2"
+                                    Text="{Binding Description}"
+                                    FontAttributes="Italic"
+                                    FontSize="14"
+                                    VerticalOptions="End"/>
 
-                            <Label
-                                Grid.Column="2" Grid.Row="0"
-                                Text="{Binding Ammount}"
-                                FontSize="20"
-                                Margin="0, 0, 15, 0"
-                                VerticalOptions="End"
-                                HorizontalOptions="End"/>
+                                <Label
+                                    Grid.Column="2" Grid.Row="0"
+                                    Text="{Binding Ammount}"
+                                    FontSize="20"
+                                    Margin="0, 0, 15, 0"
+                                    VerticalOptions="End"
+                                    HorizontalOptions="End"/>
 
-                            <Label
-                                Grid.Column="2" Grid.Row="1"
-                                Text="{Binding Currency}"
-                                FontSize="14"
-                                Margin="0, 0, 15, 0"
-                                FontAttributes="Italic"
-                                VerticalOptions="Center"
-                                HorizontalOptions="End"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <Label
+                                    Grid.Column="2" Grid.Row="1"
+                                    Text="{Binding Currency}"
+                                    FontSize="14"
+                                    Margin="0, 0, 15, 0"
+                                    FontAttributes="Italic"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="End"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Border StrokeThickness="1" Margin="15, 20, 15, 10"/>
+
+                <toolkit:Expander IsExpanded="False" FlowDirection="MatchParent">
+                    <toolkit:Expander.Header>
+                        <Label 
+                            Text="Hidden accounts"
+                            FontSize="20"
+                            HorizontalOptions="Center"/>
+                    </toolkit:Expander.Header>
+                    <VerticalStackLayout>
+                        <CollectionView ItemsSource="{Binding HiddenAccounts}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Account">
+                                    <Grid Padding="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.4*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="0.5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <toolkit:AvatarView 
+                                            Grid.RowSpan="2"
+                                            FontSize="26"
+                                            Text="{Binding Icon}"
+                                            FontFamily="MaterialIconsRegular"
+                                            BackgroundColor="{Binding Color}" />
+
+                                        <Label 
+                                            Grid.Column="1"
+                                            Text="{Binding Name}"
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            VerticalOptions="End"/>
+
+                                        <Label
+                                            Grid.Column="1" Grid.Row="2"
+                                            Text="{Binding Description}"
+                                            FontAttributes="Italic"
+                                            FontSize="14"
+                                            VerticalOptions="End"/>
+
+                                        <Label
+                                            Grid.Column="2" Grid.Row="0"
+                                            Text="{Binding Ammount}"
+                                            FontSize="20"
+                                            Margin="0, 0, 15, 0"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="End"/>
+
+                                        <Label
+                                            Grid.Column="2" Grid.Row="1"
+                                            Text="{Binding Currency}"
+                                            FontSize="14"
+                                            Margin="0, 0, 15, 0"
+                                            FontAttributes="Italic"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="End"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </toolkit:Expander>
+            </VerticalStackLayout>
 
             <Button 
                 Text="{x:Static helpers:MaterialDesignIconFonts.Add}"
