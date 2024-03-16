@@ -61,7 +61,7 @@
                     </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="viewModels:Icon">
+                        <DataTemplate>
                             <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
                                 <toolkit:AvatarView
                                     FontFamily="MaterialIconsRegular"
@@ -69,7 +69,7 @@
                                     BorderColor="{DynamicResource Primary}"
                                     MinimumHeightRequest="60"
                                     MinimumWidthRequest="60"
-                                    Text="{Binding Value}"
+                                    Text="{Binding}"
                                     VerticalOptions="Center"/>
                             </HorizontalStackLayout>
                         </DataTemplate>

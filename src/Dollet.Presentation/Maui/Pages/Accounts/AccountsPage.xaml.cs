@@ -10,5 +10,5 @@ public partial class AccountsPage : ContentPage
 		InitializeComponent();
 
 		BindingContext = ServiceProviderHelper.GetService<AccountsPageViewModel>();
-    }
+	}
 }

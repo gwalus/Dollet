@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Pages;
-using Dollet.Services;
 using System.Collections.ObjectModel;
 
 namespace Dollet.ViewModels
@@ -11,12 +10,10 @@ namespace Dollet.ViewModels
     public partial class AccountsPageViewModel : ObservableObject
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly INavigationService _navigationService;
 
-        public AccountsPageViewModel(IAccountRepository accountRepository, INavigationService navigationService)
+        public AccountsPageViewModel(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
-            _navigationService = navigationService;
         }
 
         private decimal _accountsBalanceInDefaultCurrency;
@@ -31,12 +28,6 @@ namespace Dollet.ViewModels
         public ObservableCollection<Account> HiddenAccounts { get; private set; } = [];
 
         public ObservableCollection<string> Currencies { get; private set; } = [];
-
-        [RelayCommand]
-        async Task OnAppearing(EventArgs eventArgs)
-        {
-
-        }
 
         [RelayCommand]
         async Task NavigatedTo()
@@ -109,7 +100,7 @@ namespace Dollet.ViewModels
         [RelayCommand]
         async Task NavigateToAddAccountPage()
         {
-            await _navigationService.NavigateToAsync<AddAccountPage>();
+            await Shell.Current.GoToAsync(nameof(AddAccountPage));
         }
     }
 }

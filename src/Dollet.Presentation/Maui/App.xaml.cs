@@ -4,11 +4,11 @@ namespace Dollet
 {
     public partial class App : Application
     {
-        public App(HomePage homePage)
+        public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(homePage);
+            MainPage = new AppShell();
         }
     }
 }

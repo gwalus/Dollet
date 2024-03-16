@@ -20,7 +20,6 @@ namespace Dollet
 
         private static IServiceCollection AddPages(this IServiceCollection services) =>
             services
-                .AddSingleton<HomePage>()
                 .AddSingleton<WalletPage>()
                 .AddSingleton<AccountsPage>()
                 .AddTransient<AddAccountPage>()
@@ -29,7 +28,6 @@ namespace Dollet
 
         private static IServiceCollection AddViewModels(this IServiceCollection services) =>
             services
-                .AddSingleton<HomePageViewModel>()
                 .AddSingleton<WalletPageViewModel>()
                 .AddSingleton<AccountsPageViewModel>()
                 .AddTransient<AddAccountPageViewModel>()

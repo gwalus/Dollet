@@ -7,8 +7,7 @@
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:Class="Dollet.Pages.AccountsPage"
              x:DataType="viewModels:AccountsPageViewModel"
-             xmlns:helpers="clr-namespace:Dollet.Helpers"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:helpers="clr-namespace:Dollet.Helpers">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -27,19 +26,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border StrokeThickness="1">
-            <Label 
-                Text="Accounts"
-                HorizontalOptions="Center" 
-                FontSize="24" 
-                Margin="0, 15"/>
-        </Border>
-
-        <Frame Grid.Row="1" Margin="15">
+        <Frame Margin="15">
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
                 <Label 
                     Text="Sum:" 
@@ -66,7 +56,7 @@
             </HorizontalStackLayout>
         </Frame>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding Accounts}">
                     <CollectionView.ItemTemplate>

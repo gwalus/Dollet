@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Helpers;
-using Dollet.Services;
+using Dollet.Pages;
 using System.Collections.ObjectModel;
 
 namespace Dollet.ViewModels.Accounts
@@ -11,35 +11,33 @@ namespace Dollet.ViewModels.Accounts
     public partial class AddAccountPageViewModel : ObservableObject
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly INavigationService _navigationService;
 
-        public ObservableCollection<Icon> Icons { get; set; }
+        public ObservableCollection<string> Icons { get; set; }
         public ObservableCollection<string> Colors { get; set; }
         public ObservableCollection<string> Currencies{ get; set; }
 
         public decimal Ammount { get; set; } = 0.00m;
         public string Name { get; set; }
         public string Description { get; set; } = string.Empty;
-        public Icon SelectedIcon { get; set; }
+        public string SelectedIcon { get; set; }
         public string SelectedColor { get; set; }
         public string SelectedCurrency { get; set; } = "PLN";
         public bool IsHidden { get; set; } = false;
 
-        public AddAccountPageViewModel(IAccountRepository accountRepository, INavigationService navigationService)
+        public AddAccountPageViewModel(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
-            _navigationService = navigationService;
             Icons =
             [
-                new Icon { Value = MaterialDesignIconFonts.Account_balance },
-                new Icon { Value = MaterialDesignIconFonts.Account_balance_wallet },
-                new Icon { Value = MaterialDesignIconFonts.Wallet },
-                new Icon { Value = MaterialDesignIconFonts.Savings },
-                new Icon { Value = MaterialDesignIconFonts.Credit_card },
-                new Icon { Value = MaterialDesignIconFonts.Paid },
-                new Icon { Value = MaterialDesignIconFonts.Euro },
-                new Icon { Value = MaterialDesignIconFonts.Wallet_giftcard },
-                new Icon { Value = MaterialDesignIconFonts.Currency_exchange }
+                MaterialDesignIconFonts.Account_balance,
+                MaterialDesignIconFonts.Account_balance_wallet,
+                MaterialDesignIconFonts.Wallet,
+                MaterialDesignIconFonts.Savings,
+                MaterialDesignIconFonts.Credit_card,
+                MaterialDesignIconFonts.Paid,
+                MaterialDesignIconFonts.Euro,
+                MaterialDesignIconFonts.Wallet_giftcard,
+                MaterialDesignIconFonts.Currency_exchange
             ];
 
             Colors =
@@ -62,7 +60,7 @@ namespace Dollet.ViewModels.Accounts
                 Ammount = Ammount,
                 Description = Description,
                 Name = Name,
-                Icon = SelectedIcon.Value,
+                Icon = SelectedIcon,
                 Color = SelectedColor,
                 Currency = SelectedCurrency,
                 IsHidden = IsHidden
@@ -70,14 +68,8 @@ namespace Dollet.ViewModels.Accounts
 
             if(added)
             {
-                await _navigationService.NavigateBackAsync();
+                await Shell.Current.GoToAsync($"//{nameof(AccountsPage)}");
             }
         }
-    }
-
-    public class Icon
-    {
-        public string Name { get; set; }
-        public string Value { get; set; }
     }
 }
