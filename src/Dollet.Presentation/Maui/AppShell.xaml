@@ -8,34 +8,86 @@
     xmlns:fonts="clr-namespace:Dollet.Helpers"
     Shell.FlyoutBehavior="Flyout">
 
+    <Shell.FlyoutHeader FlyoutHeaderBehavior="CollapseOnScroll">
+        <VerticalStackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label 
+                    Grid.RowSpan="2"
+                    Text="{x:Static fonts:MaterialDesignIconFonts.Account_circle}"
+                    FontFamily="MaterialIconsRegular" 
+                    FontSize="80"
+                    Padding="15"/>
+
+                <Label 
+                    Grid.Column="1"
+                    Text="Username"
+                    FontSize="24"
+                    VerticalOptions="End"/>
+
+                <Label 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="10.000 PLN"
+                    VerticalOptions="Start"/>
+            </Grid>
+            
+            <Border />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
     <FlyoutItem 
         Title="Accounts" 
-        Route="AccountsPage"
-        Icon="{FontImage FontFamily=MaterialIconsRegular, Glyph={x:Static fonts:MaterialDesignIconFonts.Account_balance}, Size=50}">
+        Route="AccountsPage">
+
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource
+            FontFamily="MaterialIconsRegular"
+            Glyph="{x:Static fonts:MaterialDesignIconFonts.Account_balance}"
+            Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
+        </FlyoutItem.FlyoutIcon>
 
         <ShellContent 
             Title="Accounts"
             ContentTemplate="{DataTemplate pages:AccountsPage}" />
     </FlyoutItem>
-    
+
     <FlyoutItem 
         Title="Wallet" 
         Route="WalletPage">
-        
+
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource
+                FontFamily="MaterialIconsRegular"
+                Glyph="{x:Static fonts:MaterialDesignIconFonts.Wallet}"
+                Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
+        </FlyoutItem.FlyoutIcon>
+
         <ShellContent 
             Title="Wallet" 
             ContentTemplate="{DataTemplate pages:WalletPage}">
-            
-            <ShellContent.Icon>
-                <FontImageSource FontFamily="MaterialIconsRegular" Glyph="{x:Static fonts:MaterialDesignIconFonts.Wallet}" Color="Red" Size="50"/>
-            </ShellContent.Icon>
         </ShellContent>
     </FlyoutItem>
 
     <FlyoutItem 
         Title="Inwestments"
-        Route="InwestmentsPage"
-        Icon="{FontImage FontFamily=MaterialIconsRegular, Glyph={x:Static fonts:MaterialDesignIconFonts.Inventory}, Size=50}">
+        Route="InwestmentsPage">
+
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource
+                FontFamily="MaterialIconsRegular"
+                Glyph="{x:Static fonts:MaterialDesignIconFonts.Home}"
+                Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
+        </FlyoutItem.FlyoutIcon>
 
         <ShellContent 
             Title="Inwestments"
@@ -44,8 +96,14 @@
 
     <FlyoutItem 
         Title="Settings"
-        Route="SettingsPage"
-        Icon="{FontImage FontFamily=MaterialIconsRegular, Glyph={x:Static fonts:MaterialDesignIconFonts.Settings}, Size=50}">
+        Route="SettingsPage">
+
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource
+                FontFamily="MaterialIconsRegular"
+                Glyph="{x:Static fonts:MaterialDesignIconFonts.Settings}"
+                Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
+        </FlyoutItem.FlyoutIcon>
 
         <ShellContent 
             Title="Settings"
@@ -58,4 +116,16 @@
         ContentTemplate="{DataTemplate pages:AddAccountPage}"
         Shell.FlyoutItemIsVisible="False"/>
 
+    <Shell.FlyoutFooter>
+        <HorizontalStackLayout Padding="15, 0, 0, 10" Spacing="10">
+            <Label 
+                Text="{x:Static fonts:MaterialDesignIconFonts.Supervised_user_circle}"
+                FontFamily="MaterialIconsRegular"
+                FontSize="32"/>
+            <Label 
+                Text="Change username"
+                TextColor="Black"
+                VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+    </Shell.FlyoutFooter>
 </Shell>
