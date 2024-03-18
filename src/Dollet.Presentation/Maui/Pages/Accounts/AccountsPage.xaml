@@ -58,10 +58,21 @@
 
         <Grid Grid.Row="1">
             <VerticalStackLayout>
-                <CollectionView ItemsSource="{Binding Accounts}">
+                <CollectionView ItemsSource="{Binding Accounts}" SelectionMode="None">
+                    <!--<CollectionView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToEditAccountPageCommand}"/>
+                    </CollectionView.GestureRecognizers>-->
+                    
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Account">
                             <Grid Padding="5">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPageCommand}" 
+                                        CommandParameter="{Binding .}"/>
+
+                                </Grid.GestureRecognizers>
+
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.4*"/>
                                     <ColumnDefinition Width="*"/>
@@ -77,7 +88,16 @@
                                     FontSize="26"
                                     Text="{Binding Icon}"
                                     FontFamily="MaterialIconsRegular"
-                                    BackgroundColor="{Binding Color}" />
+                                    BackgroundColor="{Binding Color}" >
+
+                                    <!--<toolkit:AvatarView.Behaviors>
+                                        <toolkit:EventToCommandBehavior
+                                            EventName="Tapped"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPage}" CommandParameter="{Binding .}">
+
+                                        </toolkit:EventToCommandBehavior>
+                                    </toolkit:AvatarView.Behaviors>-->
+                                </toolkit:AvatarView>
 
                                 <Label 
                                     Grid.Column="1"

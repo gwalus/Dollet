@@ -1,5 +1,6 @@
 ﻿using Dollet.Commands;
 using Dollet.Pages;
+using Dollet.Pages.Accounts;
 using Dollet.Services;
 using Dollet.ViewModels;
 using Dollet.ViewModels.Accounts;
@@ -23,6 +24,7 @@ namespace Dollet
                 .AddSingleton<WalletPage>()
                 .AddSingleton<AccountsPage>()
                 .AddTransient<AddAccountPage>()
+                .AddTransient<EditAccountPage>()
                 .AddSingleton<InwestmentsPage>()
                 .AddSingleton<SettingsPage>();
 
@@ -31,6 +33,7 @@ namespace Dollet
                 .AddSingleton<WalletPageViewModel>()
                 .AddSingleton<AccountsPageViewModel>()
                 .AddTransient<AddAccountPageViewModel>()
+                .AddTransient<EditAccountPageViewModel>()
                 .AddSingleton<InwestmentsPageViewModel>()
                 .AddSingleton<SettingsPageViewModel>();
 

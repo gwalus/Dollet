@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Pages;
+using Dollet.Pages.Accounts;
 using System.Collections.ObjectModel;
 
 namespace Dollet.ViewModels
@@ -101,6 +102,15 @@ namespace Dollet.ViewModels
         async Task NavigateToAddAccountPage()
         {
             await Shell.Current.GoToAsync(nameof(AddAccountPage));
+        }
+
+        [RelayCommand]
+        async Task NavigateToEditAccountPage(Account account)
+        {
+            await Shell.Current.GoToAsync(nameof(EditAccountPage), true, new Dictionary<string, object>
+            {
+                {$"{nameof(Account)}", account }
+            });
         }
     }
 }
