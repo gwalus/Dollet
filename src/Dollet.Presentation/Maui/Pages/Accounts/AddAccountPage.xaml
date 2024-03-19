@@ -21,6 +21,7 @@
                 <Entry  
                     Placeholder="0.00"
                     Keyboard="Numeric"
+                    ReturnType="Next"
                     Text="{Binding Ammount, Mode=OneWayToSource}">
                     <Entry.Behaviors>
                         <toolkit:NumericValidationBehavior 
@@ -34,11 +35,13 @@
                 <Label Text="Name"/>
                 <Entry 
                     Placeholder="Enter account name"
+                    ReturnType="Next"
                     Text="{Binding Name}"/>
 
                 <Label Text="Description"/>
                 <Entry 
                     Placeholder="Enter account description"
+                    ReturnType="Done"
                     Text="{Binding Description}"/>
 
                 <Label Text="Icon"/>

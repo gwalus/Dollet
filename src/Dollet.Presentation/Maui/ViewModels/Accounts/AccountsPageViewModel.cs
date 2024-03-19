@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
+using Dollet.Helpers;
 using Dollet.Pages;
 using Dollet.Pages.Accounts;
 using System.Collections.ObjectModel;
@@ -30,7 +31,8 @@ namespace Dollet.ViewModels.Accounts
         ObservableCollection<Account> hiddenAccounts = [];
         public ObservableCollection<Account> HiddenAccounts { get => hiddenAccounts; set => SetProperty(ref hiddenAccounts, value); }
 
-        public ObservableCollection<string> Currencies { get; private set; } = [];
+        ObservableCollection<string> currencies = [];
+        public ObservableCollection<string> Currencies { get => currencies; set => SetProperty(ref currencies, value); }
 
         [RelayCommand]
         async Task NavigatedTo()
@@ -39,6 +41,7 @@ namespace Dollet.ViewModels.Accounts
 
             Accounts = [];
             HiddenAccounts = [];
+            Currencies = [];
 
             foreach (var item in results.GroupBy(r => r.IsHidden))
             {
@@ -57,12 +60,7 @@ namespace Dollet.ViewModels.Accounts
 
             AccountsBalance = _accountsBalanceInDefaultCurrency;
 
-            Currencies = [];
-
-            Currencies.Add("PLN");
-            Currencies.Add("EUR");
-            Currencies.Add("USD");
-            Currencies.Add("CHF");
+            Currencies = Defined.Currencies;
         }
 
         [RelayCommand]

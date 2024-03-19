@@ -23,23 +23,24 @@
         <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
     </ContentPage.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Frame Margin="15">
-            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
-                <Label 
+            <Frame Margin="15">
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <Label 
                     Text="Sum:" 
                     FontSize="Title" 
                     VerticalOptions="Center"/>
-                <Label 
+                    <Label 
                     Text="{Binding AccountsBalance}"
                     FontSize="Title" 
                     VerticalOptions="Center"/>
-                <Picker
+                    <Picker
                     Title="PLN"
                     WidthRequest="50"
                     FontSize="Title"
@@ -47,163 +48,157 @@
                     SelectedItem="{Binding SelectedCurrency, Mode=OneWayToSource}"
                     ItemsSource="{Binding Currencies}">
 
-                    <Picker.Behaviors>
-                        <toolkit:EventToCommandBehavior
+                        <Picker.Behaviors>
+                            <toolkit:EventToCommandBehavior
                             EventName="SelectedIndexChanged"
                             Command="{Binding CurrencyChangedCommand}" />
-                    </Picker.Behaviors>
-                </Picker>
-            </HorizontalStackLayout>
-        </Frame>
+                        </Picker.Behaviors>
+                    </Picker>
+                </HorizontalStackLayout>
+            </Frame>
 
-        <Grid Grid.Row="1">
-            <VerticalStackLayout>
-                <CollectionView ItemsSource="{Binding Accounts}" SelectionMode="None">
-                    <!--<CollectionView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateToEditAccountPageCommand}"/>
-                    </CollectionView.GestureRecognizers>-->
-                    
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Account">
-                            <Grid Padding="5">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPageCommand}" 
-                                        CommandParameter="{Binding .}"/>
+            <Grid Grid.Row="1">
 
-                                </Grid.GestureRecognizers>
+                <VerticalStackLayout>
+                    <CollectionView ItemsSource="{Binding Accounts}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Account">
+                                <Grid Padding="5">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPageCommand}" 
+                                            CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.4*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="0.5*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.4*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
 
-                                <toolkit:AvatarView 
-                                    Grid.RowSpan="2"
-                                    FontSize="26"
-                                    Text="{Binding Icon}"
-                                    FontFamily="MaterialIconsRegular"
-                                    BackgroundColor="{Binding Color}" >
+                                    <toolkit:AvatarView 
+                                        Grid.RowSpan="2"
+                                        FontSize="26"
+                                        Text="{Binding Icon}"
+                                        FontFamily="MaterialIconsRegular"
+                                        BackgroundColor="{Binding Color}">
+                                    </toolkit:AvatarView>
 
-                                    <!--<toolkit:AvatarView.Behaviors>
-                                        <toolkit:EventToCommandBehavior
-                                            EventName="Tapped"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPage}" CommandParameter="{Binding .}">
+                                    <Label 
+                                        Grid.Column="1"
+                                        Text="{Binding Name}"
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        VerticalOptions="End"/>
 
-                                        </toolkit:EventToCommandBehavior>
-                                    </toolkit:AvatarView.Behaviors>-->
-                                </toolkit:AvatarView>
+                                    <Label
+                                        Grid.Column="1" Grid.Row="2"
+                                        Text="{Binding Description}"
+                                        FontAttributes="Italic"
+                                        FontSize="14"
+                                        VerticalOptions="End"/>
 
-                                <Label 
-                                    Grid.Column="1"
-                                    Text="{Binding Name}"
-                                    FontAttributes="Bold"
-                                    FontSize="20"
-                                    VerticalOptions="End"/>
+                                    <Label
+                                        Grid.Column="2" Grid.Row="0"
+                                        Text="{Binding Ammount}"
+                                        FontSize="20"
+                                        Margin="0, 0, 15, 0"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="End"/>
 
-                                <Label
-                                    Grid.Column="1" Grid.Row="2"
-                                    Text="{Binding Description}"
-                                    FontAttributes="Italic"
-                                    FontSize="14"
-                                    VerticalOptions="End"/>
+                                    <Label
+                                        Grid.Column="2" Grid.Row="1"
+                                        Text="{Binding Currency}"
+                                        FontSize="14"
+                                        Margin="0, 0, 15, 0"
+                                        FontAttributes="Italic"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-                                <Label
-                                    Grid.Column="2" Grid.Row="0"
-                                    Text="{Binding Ammount}"
-                                    FontSize="20"
-                                    Margin="0, 0, 15, 0"
-                                    VerticalOptions="End"
-                                    HorizontalOptions="End"/>
+                    <Border StrokeThickness="1" Margin="15, 20, 15, 10"/>
 
-                                <Label
-                                    Grid.Column="2" Grid.Row="1"
-                                    Text="{Binding Currency}"
-                                    FontSize="14"
-                                    Margin="0, 0, 15, 0"
-                                    FontAttributes="Italic"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="End"/>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-                <Border StrokeThickness="1" Margin="15, 20, 15, 10"/>
-
-                <toolkit:Expander IsExpanded="False" FlowDirection="MatchParent">
-                    <toolkit:Expander.Header>
-                        <Label 
+                    <toolkit:Expander IsExpanded="False" FlowDirection="MatchParent">
+                        <toolkit:Expander.Header>
+                            <Label 
                             Text="Hidden accounts"
                             FontSize="20"
                             HorizontalOptions="Center"/>
-                    </toolkit:Expander.Header>
-                    <VerticalStackLayout>
-                        <CollectionView ItemsSource="{Binding HiddenAccounts}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Account">
-                                    <Grid Padding="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.4*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="0.5*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="auto"/>
-                                            <RowDefinition Height="auto"/>
-                                        </Grid.RowDefinitions>
+                        </toolkit:Expander.Header>
+                        <VerticalStackLayout>
+                            <CollectionView ItemsSource="{Binding HiddenAccounts}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Account">
+                                        <Grid Padding="5">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:AccountsPageViewModel}}, Path=NavigateToEditAccountPageCommand}" 
+                                                    CommandParameter="{Binding .}"/>
+                                            </Grid.GestureRecognizers>
 
-                                        <toolkit:AvatarView 
-                                            Grid.RowSpan="2"
-                                            FontSize="26"
-                                            Text="{Binding Icon}"
-                                            FontFamily="MaterialIconsRegular"
-                                            BackgroundColor="{Binding Color}" />
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.4*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
 
-                                        <Label 
-                                            Grid.Column="1"
-                                            Text="{Binding Name}"
-                                            FontAttributes="Bold"
-                                            FontSize="20"
-                                            VerticalOptions="End"/>
+                                            <toolkit:AvatarView 
+                                                Grid.RowSpan="2"
+                                                FontSize="26"
+                                                Text="{Binding Icon}"
+                                                FontFamily="MaterialIconsRegular"
+                                                BackgroundColor="{Binding Color}" />
 
-                                        <Label
-                                            Grid.Column="1" Grid.Row="2"
-                                            Text="{Binding Description}"
-                                            FontAttributes="Italic"
-                                            FontSize="14"
-                                            VerticalOptions="End"/>
+                                            <Label 
+                                                Grid.Column="1"
+                                                Text="{Binding Name}"
+                                                FontAttributes="Bold"
+                                                FontSize="20"
+                                                VerticalOptions="End"/>
 
-                                        <Label
-                                            Grid.Column="2" Grid.Row="0"
-                                            Text="{Binding Ammount}"
-                                            FontSize="20"
-                                            Margin="0, 0, 15, 0"
-                                            VerticalOptions="End"
-                                            HorizontalOptions="End"/>
+                                            <Label
+                                                Grid.Column="1" Grid.Row="2"
+                                                Text="{Binding Description}"
+                                                FontAttributes="Italic"
+                                                FontSize="14"
+                                                VerticalOptions="End"/>
 
-                                        <Label
-                                            Grid.Column="2" Grid.Row="1"
-                                            Text="{Binding Currency}"
-                                            FontSize="14"
-                                            Margin="0, 0, 15, 0"
-                                            FontAttributes="Italic"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="End"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </VerticalStackLayout>
-                </toolkit:Expander>
-            </VerticalStackLayout>
+                                            <Label
+                                                Grid.Column="2" Grid.Row="0"
+                                                Text="{Binding Ammount}"
+                                                FontSize="20"
+                                                Margin="0, 0, 15, 0"
+                                                VerticalOptions="End"
+                                                HorizontalOptions="End"/>
 
-            <Button 
+                                            <Label
+                                                Grid.Column="2" Grid.Row="1"
+                                                Text="{Binding Currency}"
+                                                FontSize="14"
+                                                Margin="0, 0, 15, 0"
+                                                FontAttributes="Italic"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </VerticalStackLayout>
+                    </toolkit:Expander>
+                </VerticalStackLayout>
+
+                <Button 
                 Text="{x:Static fonts:MaterialDesignIcons.Add}"
                 FontFamily="MaterialIconsRegular"
                 FontSize="32"
@@ -215,6 +210,7 @@
                 VerticalOptions="End"
                 BackgroundColor="{DynamicResource PrimaryLight}"
                 Command="{Binding NavigateToAddAccountPageCommand}"/>
+            </Grid>
         </Grid>
-    </Grid>
+    </ScrollView>
 </ContentPage>
