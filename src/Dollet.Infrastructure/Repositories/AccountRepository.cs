@@ -31,5 +31,11 @@ namespace Dollet.Infrastructure.Repositories
         {
             return await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<bool> UpdateAsync(Account account)
+        {
+            _dbContext.Accounts.Update(account);
+            return await _dbContext.SaveChangesAsync() > 0;
+        }
     }
 }
