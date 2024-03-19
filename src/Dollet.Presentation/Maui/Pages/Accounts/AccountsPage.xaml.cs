@@ -1,5 +1,5 @@
 using Dollet.Helpers;
-using Dollet.ViewModels;
+using Dollet.ViewModels.Accounts;
 
 namespace Dollet.Pages;
 

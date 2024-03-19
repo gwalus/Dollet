@@ -2,21 +2,109 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollet.Pages.Accounts.EditAccountPage"
-             Title="EditAccountPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels.Accounts"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Edit account"
+             x:DataType="viewModels:EditAccountPageViewModel">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-        <Label 
-    Text="{Binding Account.Name}"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center"/>
+        <ScrollView>
+            <VerticalStackLayout Padding="20, 10" Spacing="15">
+                <Label Text="Ammount"/>
+                <Entry  
+                Placeholder="0.00"
+                Keyboard="Numeric"
+                Text="{Binding Account.Ammount, Mode=TwoWay}">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="0.00"
+                            MaximumDecimalPlaces="2"/>
+                    </Entry.Behaviors>
+                </Entry>
 
-        <Label 
-    Text="Welcome to .NET MAUI!"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
-    </VerticalStackLayout>
+                <Label Text="Name"/>
+                <Entry 
+                Placeholder="Enter account name"
+                Text="{Binding Account.Name}"/>
+
+                <Label Text="Description"/>
+                <Entry 
+                Placeholder="Enter account description"
+                Text="{Binding Account.Description}"/>
+
+                <Label Text="Icon"/>
+
+                <CollectionView 
+                SelectionMode="Single"
+                ItemsSource="{Binding Icons}"
+                SelectedItem="{Binding Account.Icon}">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                                <toolkit:AvatarView
+                                FontFamily="MaterialIconsRegular"
+                                FontSize="32"
+                                BorderColor="{DynamicResource Primary}"
+                                MinimumHeightRequest="60"
+                                MinimumWidthRequest="60"
+                                Text="{Binding}"
+                                VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Color"/>
+                <CollectionView 
+                SelectionMode="Single"
+                ItemsSource="{Binding Colors}"
+                SelectedItem="{Binding Account.Color}">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout Margin="0, 0, 5, 0" Spacing="5">
+                                <Ellipse 
+                                BackgroundColor="{Binding}"
+                                WidthRequest="50"
+                                HeightRequest="50"
+                                HorizontalOptions="Start" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Currency"/>
+                <Picker 
+                Title="Select currency"
+                ItemsSource="{Binding Currencies}"
+                SelectedItem="{Binding Account.Currency}"/>
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="Hidden" VerticalOptions="Center"/>
+                    <Switch IsToggled="{Binding Account.IsHidden}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button
+        Grid.Row="1"
+        Text="Save"
+        Margin="20"
+        Command="{Binding EditAccountCommand}"/>
+    </Grid>
 </ContentPage>

@@ -31,7 +31,7 @@ namespace Dollet
         private static IServiceCollection AddViewModels(this IServiceCollection services) =>
             services
                 .AddSingleton<WalletPageViewModel>()
-                .AddSingleton<AccountsPageViewModel>()
+                .AddTransient<AccountsPageViewModel>()
                 .AddTransient<AddAccountPageViewModel>()
                 .AddTransient<EditAccountPageViewModel>()
                 .AddSingleton<InwestmentsPageViewModel>()

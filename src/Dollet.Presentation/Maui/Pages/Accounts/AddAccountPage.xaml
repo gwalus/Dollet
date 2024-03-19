@@ -8,15 +8,7 @@
              x:DataType="viewModels:AddAccountPageViewModel"
              xmlns:helpers="clr-namespace:Dollet.Helpers"
              Title="New account">
-
-    <ContentPage.Resources>
-        <converters:FirstCharacterConverter x:Key="FirstCharacterConverter" />
-
-        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
-            <Setter Property="TextColor" Value="IndianRed" />
-        </Style>
-    </ContentPage.Resources>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

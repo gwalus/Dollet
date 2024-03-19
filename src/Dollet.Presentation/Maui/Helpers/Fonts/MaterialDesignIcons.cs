@@ -1,6 +1,6 @@
-﻿namespace Dollet.Helpers
+﻿namespace Dollet.Helpers.Fonts
 {
-    public static class MaterialDesignIconFonts
+    public static class MaterialDesignIcons
     {
         public const string Icon1 = "\u0030";
         public const string Icon2 = "\u0031";

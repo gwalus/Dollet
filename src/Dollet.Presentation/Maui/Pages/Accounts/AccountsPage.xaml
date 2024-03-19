@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models="clr-namespace:Dollet.Core.Entities;assembly=Dollet.Core"
-             xmlns:viewModels="clr-namespace:Dollet.ViewModels"
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels.Accounts"
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:Class="Dollet.Pages.AccountsPage"
              x:DataType="viewModels:AccountsPageViewModel"
-             xmlns:helpers="clr-namespace:Dollet.Helpers">
+             xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -204,7 +204,7 @@
             </VerticalStackLayout>
 
             <Button 
-                Text="{x:Static helpers:MaterialDesignIconFonts.Add}"
+                Text="{x:Static fonts:MaterialDesignIcons.Add}"
                 FontFamily="MaterialIconsRegular"
                 FontSize="32"
                 Margin="15"

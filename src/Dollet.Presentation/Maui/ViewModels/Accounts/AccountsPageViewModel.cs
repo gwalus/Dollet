@@ -6,7 +6,7 @@ using Dollet.Pages;
 using Dollet.Pages.Accounts;
 using System.Collections.ObjectModel;
 
-namespace Dollet.ViewModels
+namespace Dollet.ViewModels.Accounts
 {
     public partial class AccountsPageViewModel : ObservableObject
     {
@@ -22,11 +22,13 @@ namespace Dollet.ViewModels
         private decimal accountsBalance;
 
         public decimal AccountsBalance { get => accountsBalance; set => SetProperty(ref accountsBalance, value); }
-
         public string SelectedCurrency { get; set; }
 
-        public ObservableCollection<Account> Accounts { get; private set; } = [];
-        public ObservableCollection<Account> HiddenAccounts { get; private set; } = [];
+        ObservableCollection<Account> accounts = [];
+        public ObservableCollection<Account> Accounts { get => accounts; set => SetProperty(ref accounts, value); }
+
+        ObservableCollection<Account> hiddenAccounts = [];
+        public ObservableCollection<Account> HiddenAccounts { get => hiddenAccounts; set => SetProperty(ref hiddenAccounts, value); }
 
         public ObservableCollection<string> Currencies { get; private set; } = [];
 
@@ -35,8 +37,8 @@ namespace Dollet.ViewModels
         {
             var results = await _accountRepository.GetAllAsync();
 
-            Accounts.Clear();
-            HiddenAccounts.Clear();
+            Accounts = [];
+            HiddenAccounts = [];
 
             foreach (var item in results.GroupBy(r => r.IsHidden))
             {
@@ -55,7 +57,7 @@ namespace Dollet.ViewModels
 
             AccountsBalance = _accountsBalanceInDefaultCurrency;
 
-            Currencies.Clear();
+            Currencies = [];
 
             Currencies.Add("PLN");
             Currencies.Add("EUR");
