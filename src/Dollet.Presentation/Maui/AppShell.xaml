@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Dollet"
     xmlns:pages="clr-namespace:Dollet.Pages"
+    xmlns:categoryPages="clr-namespace:Dollet.Pages.Categories"
     xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts"
     Shell.FlyoutBehavior="Flyout">
 
@@ -59,6 +60,22 @@
         <ShellContent 
             Title="Accounts"
             ContentTemplate="{DataTemplate pages:AccountsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem 
+        Title="Categories" 
+        Route="CategoriesPage">
+
+        <FlyoutItem.FlyoutIcon>
+            <FontImageSource
+                FontFamily="MaterialIconsRegular"
+                Glyph="{x:Static fonts:MaterialDesignIcons.Category}"
+                Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
+        </FlyoutItem.FlyoutIcon>
+
+        <ShellContent 
+            Title="Wallet" 
+            ContentTemplate="{DataTemplate categoryPages:CategoriesPage}"/>
     </FlyoutItem>
 
     <FlyoutItem 

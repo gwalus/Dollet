@@ -87,6 +87,9 @@
 	  <MauiXaml Update="Pages\Accounts\EditAccountPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Categories\CategoriesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\InwestmentsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

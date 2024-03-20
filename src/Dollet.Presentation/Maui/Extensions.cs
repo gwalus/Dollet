@@ -1,6 +1,7 @@
 ﻿using Dollet.Commands;
 using Dollet.Pages;
 using Dollet.Pages.Accounts;
+using Dollet.Pages.Categories;
 using Dollet.Services;
 using Dollet.ViewModels;
 using Dollet.ViewModels.Accounts;
@@ -26,6 +27,7 @@ namespace Dollet
                 .AddSingleton<AccountsPage>()
                 .AddTransient<AddAccountPage>()
                 .AddTransient<EditAccountPage>()
+                .AddTransient<CategoriesPage>()
                 .AddSingleton<InwestmentsPage>()
                 .AddSingleton<SettingsPage>();
 
