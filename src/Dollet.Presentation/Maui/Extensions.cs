@@ -6,6 +6,7 @@ using Dollet.Services;
 using Dollet.ViewModels;
 using Dollet.ViewModels.Accounts;
 using Dollet.ViewModels.Categories;
+using Dollet.ViewModels.Transactions;
 
 namespace Dollet
 {
@@ -38,6 +39,8 @@ namespace Dollet
                 .AddTransient<AddAccountPageViewModel>()
                 .AddTransient<EditAccountPageViewModel>()
                 .AddTransient<CategoriesPageViewModel>()
+                .AddTransient<IncomesPageViewModel>()
+                .AddTransient<ExpensesPageViewModel>()
                 .AddSingleton<InwestmentsPageViewModel>()
                 .AddSingleton<SettingsPageViewModel>();
 

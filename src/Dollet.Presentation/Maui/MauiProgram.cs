@@ -18,6 +18,12 @@ namespace Dollet
                     fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIconsRegular");
                 })
                 .UseMauiCommunityToolkit();
+//                .ConfigureMauiHandlers(handlers => {
+////#if ANDROID
+//                           handlers.AddHandler(typeof(Shell), typeof(CustomShellHandler));
+////#endif
+//                }
+                
 
             builder.Services.AddSingleton((e) => Connectivity.Current);
 

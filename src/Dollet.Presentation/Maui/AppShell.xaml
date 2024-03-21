@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Dollet"
     xmlns:pages="clr-namespace:Dollet.Pages"
     xmlns:categoryPages="clr-namespace:Dollet.Pages.Categories"
+    xmlns:transactionPages="clr-namespace:Dollet.Pages.Transactions"
     xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts"
     Shell.FlyoutBehavior="Flyout">
 
@@ -41,7 +42,7 @@
                     Text="10.000 PLN"
                     VerticalOptions="Start"/>
             </Grid>
-            
+
             <Border />
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
@@ -73,14 +74,12 @@
                 Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
         </FlyoutItem.FlyoutIcon>
 
-        <ShellContent 
-            Title="Wallet" 
+        <ShellContent
             ContentTemplate="{DataTemplate categoryPages:CategoriesPage}"/>
     </FlyoutItem>
 
     <FlyoutItem 
-        Title="Wallet" 
-        Route="WalletPage">
+        Title="Transactions">
 
         <FlyoutItem.FlyoutIcon>
             <FontImageSource
@@ -89,10 +88,19 @@
                 Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}"/>
         </FlyoutItem.FlyoutIcon>
 
-        <ShellContent 
-            Title="Wallet" 
-            ContentTemplate="{DataTemplate pages:WalletPage}">
-        </ShellContent>
+        <Tab>
+            <ShellContent 
+                Title="Expenses"
+                Route="ExpensesPage"
+                ContentTemplate="{DataTemplate transactionPages:ExpensesPage}">
+            </ShellContent>
+
+            <ShellContent 
+                Title="Incomes" 
+                Route="IncomesPage"
+                ContentTemplate="{DataTemplate transactionPages:IncomesPage}">
+            </ShellContent>
+        </Tab>
     </FlyoutItem>
 
     <FlyoutItem 
