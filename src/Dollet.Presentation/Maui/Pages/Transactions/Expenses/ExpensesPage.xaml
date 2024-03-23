@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollet.Pages.Transactions.Expenses.ExpensesPage"
+             xmlns:viewModels="clr-namespace:Dollet.ViewModels.Transactions.Expenses"
+             xmlns:models="clr-namespace:Dollet.Core.Entities;assembly=Dollet.Core"
+             x:DataType="viewModels:ExpensesPageViewModel">
+
+    <VerticalStackLayout>
+        <Label 
+            Text="Expenses Chart!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Padding="80"/>
+
+        <Border/>
+
+        <CollectionView Margin="0, 0, 0, 20"
+    ItemsSource="{Binding Expenses}">
+            <!--<CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="viewModels:ExpensesGroup">
+                    <Label Text="{Binding CategoryName}" Padding="5"
+                   Margin="10, 0"
+                BackgroundColor="LightGray"
+                FontSize="18"
+                FontAttributes="Bold" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>-->
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:ExpensesGroup">
+                    <Frame 
+                        Padding="10"
+                        CornerRadius="15"
+                        Margin="15, 10, 15, 0" 
+                        BorderColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource White}}">
+
+                        <!--<HorizontalStackLayout Padding="8" Spacing="30" VerticalOptions="Center">-->
+                        <Grid ColumnDefinitions="1*, 3*, 1*, 1*">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExpensesPageViewModel}}, 
+                                        Path=NavigateToExpensesDetailsPageCommand}" 
+                                    CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                            
+                            <Label 
+                                Text="{Binding Icon}"
+                                FontFamily="MaterialIconsRegular" FontSize="32"/>
+
+                            <Label 
+                                Grid.Column="1"
+                                Text="{Binding Category}" 
+                                FontSize="Large"
+                                VerticalOptions="Center"/>
+
+                            <Label 
+                                Grid.Column="2"
+                                Text="{Binding Percent}"
+                                VerticalOptions="Center"/>
+
+                            <Label 
+                                Grid.Column="3"
+                                Text="{Binding Amount}"
+                                VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!--</HorizontalStackLayout>-->
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--<CollectionView Margin="0, 0, 0, 20"
+            ItemsSource="{Binding Expenses}"
+            IsGrouped="true">
+
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="viewModels:ExpensesGroup">
+                    <Label Text="{Binding CategoryName}" Padding="5"
+                           Margin="10, 0"
+                        BackgroundColor="LightGray"
+                        FontSize="18"
+                        FontAttributes="Bold" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Expense">
+                    <HorizontalStackLayout Padding="5" Spacing="10">
+                        <Label 
+                            Text="{Binding Comment}"
+                            FontAttributes="Italic" 
+                            Padding="5"/>
+
+                        <Label 
+                            Text="{Binding Amount}"
+                            FontAttributes="Bold" 
+                            Padding="5"/>
+                        
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+    </VerticalStackLayout>
+</ContentPage>
