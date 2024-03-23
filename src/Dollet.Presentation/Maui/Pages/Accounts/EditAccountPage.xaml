@@ -19,13 +19,13 @@
                 Placeholder="0.00"
                 Keyboard="Numeric"
                 Text="{Binding Account.Ammount, Mode=TwoWay}">
-                    <Entry.Behaviors>
+                    <!--<Entry.Behaviors>
                         <toolkit:NumericValidationBehavior 
-                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            InvalidStyle="{DynamicResource InvalidEntryStyle}"
                             Flags="ValidateOnValueChanged"
                             MinimumValue="0.00"
                             MaximumDecimalPlaces="2"/>
-                    </Entry.Behaviors>
+                    </Entry.Behaviors>-->
                 </Entry>
 
                 <Label Text="Name"/>

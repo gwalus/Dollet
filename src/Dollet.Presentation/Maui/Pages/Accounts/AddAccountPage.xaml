@@ -22,14 +22,14 @@
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     ReturnType="Next"
-                    Text="{Binding Ammount, Mode=OneWayToSource}">
-                    <Entry.Behaviors>
+                    Text="{Binding Ammount}">
+                    <!--<Entry.Behaviors>
                         <toolkit:NumericValidationBehavior 
-                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            InvalidStyle="{DynamicResource InvalidEntryStyle}"
                             Flags="ValidateOnValueChanged"
                             MinimumValue="0.00"
                             MaximumDecimalPlaces="2"/>
-                    </Entry.Behaviors>
+                    </Entry.Behaviors>-->
                 </Entry>
 
                 <Label Text="Name"/>
