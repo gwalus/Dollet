@@ -7,6 +7,7 @@
     xmlns:pages="clr-namespace:Dollet.Pages"
     xmlns:categoryPages="clr-namespace:Dollet.Pages.Categories"
     xmlns:transactionPages="clr-namespace:Dollet.Pages.Transactions"
+    xmlns:expensesPages="clr-namespace:Dollet.Pages.Transactions.Expenses"
     xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts"
     Shell.FlyoutBehavior="Flyout">
 
@@ -92,7 +93,7 @@
             <ShellContent 
                 Title="Expenses"
                 Route="ExpensesPage"
-                ContentTemplate="{DataTemplate transactionPages:ExpensesPage}">
+                ContentTemplate="{DataTemplate expensesPages:ExpensesPage}">
             </ShellContent>
 
             <ShellContent 
@@ -139,6 +140,12 @@
         Title="Add account"
         Route="AddAccountPage"
         ContentTemplate="{DataTemplate pages:AddAccountPage}"
+        Shell.FlyoutItemIsVisible="False"/>
+
+    <ShellContent 
+        Title="Expenses"
+        Route="ExpensesDetailsPage"
+        ContentTemplate="{DataTemplate expensesPages:ExpensesDetailsPage}"
         Shell.FlyoutItemIsVisible="False"/>
 
     <Shell.FlyoutFooter>

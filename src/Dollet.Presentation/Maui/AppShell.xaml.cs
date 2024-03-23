@@ -2,6 +2,7 @@
 using Dollet.Pages.Accounts;
 using Dollet.Pages.Categories;
 using Dollet.Pages.Transactions;
+using Dollet.Pages.Transactions.Expenses;
 
 namespace Dollet
 {
@@ -19,6 +20,7 @@ namespace Dollet
             
             Routing.RegisterRoute("IncomesPage", typeof(IncomesPage));
             Routing.RegisterRoute("ExpensesPage", typeof(ExpensesPage));
+            Routing.RegisterRoute("ExpensesDetailsPage", typeof(ExpensesDetailsPage));
 
             Routing.RegisterRoute("CategoriesPage", typeof(CategoriesPage));
             Routing.RegisterRoute("InwestmentsPage", typeof(InwestmentsPage));
