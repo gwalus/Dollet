@@ -1,41 +1,36 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Helpers;
-using System.Collections.ObjectModel;
+using MvvmHelpers;
 
 namespace Dollet.ViewModels.Accounts
 {
     [QueryProperty(nameof(Account), "Account")]
-    public partial class EditAccountPageViewModel : ObservableObject
+    public partial class EditAccountPageViewModel(IAccountRepository accountRepository) : ObservableObject
     {
         private Account account;
+        public Account Account { get => account; set { SetProperty(ref account, value); } }
 
-        public Account Account
-        {
-            get => account;
-            set
-            {
-                SetProperty(ref account, value);
-            }
-        }
-
-        public ObservableCollection<string> Icons { get; private set; }
-        public ObservableCollection<string> Colors { get; private set; }
-        public ObservableCollection<string> Currencies { get; private set; }
+        public ObservableRangeCollection<string> Icons { get; } = [];
+        public ObservableRangeCollection<string> Colors { get; } = [];
+        public ObservableRangeCollection<string> Currencies { get; } = [];
         
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository = accountRepository;
 
-        public EditAccountPageViewModel(IAccountRepository accountRepository)
+        [RelayCommand]
+        void Appearing()
         {
-            _accountRepository = accountRepository;
+            var icons = Defined.Icons;
+            Icons.AddRange(icons);
 
-            Icons = Defined.Icons;
-            Colors = Defined.Colors;
-            Currencies = Defined.Currencies;
+            var colors = Defined.Colors;
+            Colors.AddRange(colors);
+
+            var currencies = Defined.Currencies;
+            Currencies.AddRange(currencies);
         }
 
         [RelayCommand]

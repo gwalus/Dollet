@@ -1,21 +1,19 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Helpers;
-using Dollet.Helpers.Fonts;
 using Dollet.Pages;
-using System.Collections.ObjectModel;
+using MvvmHelpers;
 
 namespace Dollet.ViewModels.Accounts
 {
-    public partial class AddAccountPageViewModel : ObservableObject
+    public partial class AddAccountPageViewModel(IAccountRepository accountRepository) : ObservableObject
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository = accountRepository;
 
-        public ObservableCollection<string> Icons { get; private set; }
-        public ObservableCollection<string> Colors { get; private set; }
-        public ObservableCollection<string> Currencies { get; private set; }
+        public ObservableRangeCollection<string> Icons { get; } = [];
+        public ObservableRangeCollection<string> Colors { get; } = [];
+        public ObservableRangeCollection<string> Currencies { get; } = [];
 
         public decimal Ammount { get; set; } = 0.00m;
         public string Name { get; set; }
@@ -25,13 +23,17 @@ namespace Dollet.ViewModels.Accounts
         public string SelectedCurrency { get; set; } = "PLN";
         public bool IsHidden { get; set; } = false;
 
-        public AddAccountPageViewModel(IAccountRepository accountRepository)
+        [RelayCommand]
+        void Appearing()
         {
-            _accountRepository = accountRepository;
-            
-            Icons = Defined.Icons;
-            Colors = Defined.Colors;
-            Currencies = Defined.Currencies;
+            var icons = Defined.Icons;
+            Icons.AddRange(icons);
+
+            var colors = Defined.Colors;
+            Colors.AddRange(colors);
+
+            var currencies = Defined.Currencies;
+            Currencies.AddRange(currencies);
         }
 
         [RelayCommand]
@@ -48,7 +50,7 @@ namespace Dollet.ViewModels.Accounts
                 IsHidden = IsHidden
             });
 
-            if(added)
+            if (added)
             {
                 await Shell.Current.GoToAsync($"//{nameof(AccountsPage)}");
             }

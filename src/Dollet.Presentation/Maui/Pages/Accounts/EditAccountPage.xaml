@@ -6,6 +6,13 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Edit account"
              x:DataType="viewModels:EditAccountPageViewModel">
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding AppearingCommand}"/>
+    </ContentPage.Behaviors>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

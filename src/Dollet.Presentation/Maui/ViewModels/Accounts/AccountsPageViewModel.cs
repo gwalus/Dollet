@@ -1,70 +1,57 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using Dollet.Core.Abstractions.Repositories;
 using Dollet.Core.Entities;
 using Dollet.Helpers;
 using Dollet.Pages;
 using Dollet.Pages.Accounts;
-using System.Collections.ObjectModel;
+using MvvmHelpers;
 
 namespace Dollet.ViewModels.Accounts
 {
-    public partial class AccountsPageViewModel : ObservableObject
+    public partial class AccountsPageViewModel(IAccountRepository accountRepository) : ObservableObject
     {
-        private readonly IAccountRepository _accountRepository;
-
-        public AccountsPageViewModel(IAccountRepository accountRepository)
-        {
-            _accountRepository = accountRepository;
-        }
-
+        private readonly IAccountRepository _accountRepository = accountRepository;
+        
         private decimal _accountsBalanceInDefaultCurrency;
 
         private decimal accountsBalance;
-
         public decimal AccountsBalance { get => accountsBalance; set => SetProperty(ref accountsBalance, value); }
+        
         public string SelectedCurrency { get; set; }
 
-        ObservableCollection<Account> accounts = [];
-        public ObservableCollection<Account> Accounts { get => accounts; set => SetProperty(ref accounts, value); }
-
-        ObservableCollection<Account> hiddenAccounts = [];
-        public ObservableCollection<Account> HiddenAccounts { get => hiddenAccounts; set => SetProperty(ref hiddenAccounts, value); }
-
-        ObservableCollection<string> currencies = [];
-        public ObservableCollection<string> Currencies { get => currencies; set => SetProperty(ref currencies, value); }
+        public ObservableRangeCollection<Account> Accounts { get; } = [];
+        public ObservableRangeCollection<Account> HiddenAccounts { get; } = [];
+        public ObservableRangeCollection<string> Currencies { get; } = [];
 
         [RelayCommand]
         async Task NavigatedTo()
         {
             var results = await _accountRepository.GetAllAsync();
 
-            Accounts = [];
-            HiddenAccounts = [];
-            Currencies = [];
+            Accounts.Clear();
+            HiddenAccounts.Clear();
+            Currencies.Clear();
 
             foreach (var item in results.GroupBy(r => r.IsHidden))
             {
-                foreach (var abc in item)
+                if (item.Key)
                 {
-                    if (abc.IsHidden)
-                    {
-                        HiddenAccounts.Add(abc);
-                        continue;
-                    }
-                    Accounts.Add(abc);
+                    HiddenAccounts.AddRange(item);
+                    continue;
                 }
+                Accounts.AddRange(item);
             }
 
             _accountsBalanceInDefaultCurrency = Accounts.Sum(x => x.Ammount);
 
             AccountsBalance = _accountsBalanceInDefaultCurrency;
 
-            Currencies = Defined.Currencies;
+            var currencies = Defined.Currencies;
+            Currencies.AddRange(currencies);
         }
 
         [RelayCommand]
-        async Task CurrencyChanged()
+        void CurrencyChanged()
         {
             if (_accountsBalanceInDefaultCurrency == 0)
             {

@@ -33,25 +33,25 @@
             <Frame Margin="15">
                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
                     <Label 
-                    Text="Sum:" 
-                    FontSize="Title" 
-                    VerticalOptions="Center"/>
+                        Text="Sum:" 
+                        FontSize="Title" 
+                        VerticalOptions="Center"/>
                     <Label 
-                    Text="{Binding AccountsBalance}"
-                    FontSize="Title" 
-                    VerticalOptions="Center"/>
+                        Text="{Binding AccountsBalance}"
+                        FontSize="Title" 
+                        VerticalOptions="Center"/>
                     <Picker
-                    Title="PLN"
-                    WidthRequest="50"
-                    FontSize="Title"
-                    VerticalOptions="Center"
-                    SelectedItem="{Binding SelectedCurrency, Mode=OneWayToSource}"
-                    ItemsSource="{Binding Currencies}">
+                        Title="PLN"
+                        WidthRequest="50"
+                        FontSize="Title"
+                        VerticalOptions="Center"
+                        SelectedItem="{Binding SelectedCurrency}"
+                        ItemsSource="{Binding Currencies}">
 
                         <Picker.Behaviors>
                             <toolkit:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding CurrencyChangedCommand}" />
+                                EventName="SelectedIndexChanged"
+                                Command="{Binding CurrencyChangedCommand}" />
                         </Picker.Behaviors>
                     </Picker>
                 </HorizontalStackLayout>

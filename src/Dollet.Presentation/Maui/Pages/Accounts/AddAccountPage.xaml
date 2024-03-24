@@ -8,6 +8,12 @@
              x:DataType="viewModels:AddAccountPageViewModel"
              xmlns:helpers="clr-namespace:Dollet.Helpers"
              Title="New account">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior 
+            EventName="Appearing" 
+            Command="{Binding AppearingCommand}"/>
+    </ContentPage.Behaviors>
     
     <Grid>
         <Grid.RowDefinitions>
