@@ -7,6 +7,16 @@
              xmlns:models="clr-namespace:Dollet.Core.Entities;assembly=Dollet.Core"
              x:DataType="viewModels:CategoriesPageViewModel"
              Title="Categories">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior 
+            EventName="Appearing"
+            Command="{Binding AppearingCommand}"/>
+
+        <toolkit:EventToCommandBehavior
+            EventName="Disappearing"
+            Command="{Binding DisappearingCommand}"/>
+    </ContentPage.Behaviors>
     
     <CollectionView ItemsSource="{Binding Categories}" Margin="10">
         <CollectionView.ItemsLayout>
