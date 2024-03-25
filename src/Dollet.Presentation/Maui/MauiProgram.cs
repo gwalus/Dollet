@@ -23,13 +23,11 @@ namespace Dollet
 //                           handlers.AddHandler(typeof(Shell), typeof(CustomShellHandler));
 ////#endif
 //                }
-                
-
-            builder.Services.AddSingleton((e) => Connectivity.Current);
-
             builder.Services.AddPresentation();
             builder.Services.AddCore();
             builder.Services.AddInfrastructure();
+
+            DataSeeder.SeedAsync(builder.Services).GetAwaiter().GetResult();
 
             return builder.Build();
         }
