@@ -1,5 +1,8 @@
-﻿namespace Dollet.Core.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Dollet.Core.Entities
 {
+    [Table("Currencies")]
     public class Currency : BaseEntity
     {
         public required string Name { get; set; }

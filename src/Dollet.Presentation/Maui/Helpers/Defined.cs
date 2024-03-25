@@ -1,4 +1,4 @@
-﻿using Dollet.Helpers.Fonts;
+﻿using Dollet.Core.Constants;
 
 namespace Dollet.Helpers
 {

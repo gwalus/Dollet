@@ -1,4 +1,4 @@
-﻿namespace Dollet.Helpers.Fonts
+﻿namespace Dollet.Core.Constants
 {
     public static class MaterialDesignIcons
     {
