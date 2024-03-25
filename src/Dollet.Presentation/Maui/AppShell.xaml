@@ -8,7 +8,7 @@
     xmlns:categoryPages="clr-namespace:Dollet.Pages.Categories"
     xmlns:transactionPages="clr-namespace:Dollet.Pages.Transactions"
     xmlns:expensesPages="clr-namespace:Dollet.Pages.Transactions.Expenses"
-    xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts"
+    xmlns:fonts="clr-namespace:Dollet.Core.Constants;assembly=Dollet.Core"
     Shell.FlyoutBehavior="Flyout">
 
     <Shell.FlyoutHeader FlyoutHeaderBehavior="CollapseOnScroll">

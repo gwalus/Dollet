@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:Dollet.Conventers"
              x:Class="Dollet.Pages.AccountsPage"
              x:DataType="viewModels:AccountsPageViewModel"
-             xmlns:fonts="clr-namespace:Dollet.Helpers.Fonts">
+             xmlns:fonts="clr-namespace:Dollet.Core.Constants;assembly=Dollet.Core">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior

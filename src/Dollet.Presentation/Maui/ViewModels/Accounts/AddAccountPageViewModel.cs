@@ -49,7 +49,7 @@ namespace Dollet.ViewModels.Accounts
                 Currency = SelectedCurrency,
                 IsHidden = IsHidden
             });
-
+            
             if (added)
             {
                 await Shell.Current.GoToAsync($"//{nameof(AccountsPage)}");
