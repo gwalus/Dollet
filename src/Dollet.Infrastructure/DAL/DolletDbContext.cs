@@ -2,7 +2,7 @@
 using Dollet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dollet.Core.DAL
+namespace Dollet.Infrastructure.DAL
 {
     public class DolletDbContext(DbContextOptions options) : DbContext(options)
     {

@@ -1,9 +1,8 @@
 ﻿using Dollet.Core.Abstractions.Repositories;
-using Dollet.Core.DAL;
 using Dollet.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dollet.Infrastructure.Repositories
+namespace Dollet.Infrastructure.DAL.Repositories
 {
     internal class AccountRepository(DolletDbContext dbContext) : IAccountRepository
     {

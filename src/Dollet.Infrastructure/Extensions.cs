@@ -1,5 +1,4 @@
-﻿using Dollet.Core.Abstractions.Repositories;
-using Dollet.Infrastructure.Repositories;
+﻿using Dollet.Core.DAL;
 
 namespace Dollet.Infrastructure
 {
@@ -7,9 +6,9 @@ namespace Dollet.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddDataAccessLayer();
 
             return services;
-        }
+        }   
     }
 }
