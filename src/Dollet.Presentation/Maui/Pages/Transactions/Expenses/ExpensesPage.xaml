@@ -24,12 +24,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:ExpensesGroup">
                     <Frame 
-                        Padding="10"
+                        Padding="15, 12"
                         CornerRadius="15"
-                        Margin="15, 10, 15, 0" 
+                        Margin="10, 10, 10, 0" 
                         BorderColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource White}}">
 
-                        <Grid ColumnDefinitions="1*, 3*, 1*, 1*">
+                        <Grid ColumnDefinitions="0.8*, 3*, 1*, auto">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExpensesPageViewModel}}, 
@@ -49,12 +49,14 @@
 
                             <Label 
                                 Grid.Column="2"
-                                Text="{Binding Percent}"
+                                Text="{Binding Percent, StringFormat='{0}%'}"
+                                FontSize="16"
                                 VerticalOptions="Center"/>
 
                             <Label 
                                 Grid.Column="3"
-                                Text="{Binding Amount}"
+                                Text="{Binding Amount, StringFormat='{0:F2} zł'}"
+                                FontSize="16"
                                 VerticalOptions="Center"/>
                         </Grid>
                     </Frame>
