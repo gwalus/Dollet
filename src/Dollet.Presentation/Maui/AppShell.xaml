@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     x:Class="Dollet.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -135,18 +134,6 @@
             Title="Settings"
             ContentTemplate="{DataTemplate pages:SettingsPage}" />
     </FlyoutItem>
-
-    <ShellContent 
-        Title="Add account"
-        Route="AddAccountPage"
-        ContentTemplate="{DataTemplate pages:AddAccountPage}"
-        Shell.FlyoutItemIsVisible="False"/>
-
-    <ShellContent 
-        Title="Expenses"
-        Route="ExpensesDetailsPage"
-        ContentTemplate="{DataTemplate expensesPages:ExpensesDetailsPage}"
-        Shell.FlyoutItemIsVisible="False"/>
 
     <Shell.FlyoutFooter>
         <HorizontalStackLayout Padding="15, 0, 0, 10" Spacing="10">
