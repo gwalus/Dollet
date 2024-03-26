@@ -25,12 +25,23 @@ namespace Dollet.ViewModels.Transactions.Expenses
             Expenses.Add(new ExpensesGroup { Category = "Groceries", Amount = 10, Percent = 10, Icon = MaterialDesignIcons.Local_grocery_store });
             Expenses.Add(new ExpensesGroup { Category = "Activity", Amount = 50, Percent = 50, Icon = MaterialDesignIcons.Sports_baseball });
             Expenses.Add(new ExpensesGroup { Category = "Home", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
+            Expenses.Add(new ExpensesGroup { Category = "Other", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
+            Expenses.Add(new ExpensesGroup { Category = "Other2", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
+            Expenses.Add(new ExpensesGroup { Category = "Other3", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
+            Expenses.Add(new ExpensesGroup { Category = "Other4", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
+            Expenses.Add(new ExpensesGroup { Category = "Other5", Amount = 40, Percent = 40, Icon = MaterialDesignIcons.House });
         }
 
         [RelayCommand]
         async Task NavigateToExpensesDetailsPage()
         {
             await Shell.Current.GoToAsync(nameof(ExpensesDetailsPage));
+        }
+
+        [RelayCommand]
+        async Task NavigateToAddExpensePage()
+        {
+            await Shell.Current.GoToAsync(nameof(AddExpensePage));
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Dollet
             Routing.RegisterRoute("IncomesPage", typeof(IncomesPage));
             Routing.RegisterRoute("ExpensesPage", typeof(ExpensesPage));
             Routing.RegisterRoute("ExpensesDetailsPage", typeof(ExpensesDetailsPage));
+            Routing.RegisterRoute("AddExpensePage", typeof(AddExpensePage));
 
             Routing.RegisterRoute("CategoriesPage", typeof(CategoriesPage));
             Routing.RegisterRoute("InwestmentsPage", typeof(InwestmentsPage));
