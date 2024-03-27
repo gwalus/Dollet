@@ -30,7 +30,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Frame Margin="15">
+            <Frame Margin="15" BorderColor="{DynamicResource Primary}">
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <Label 
                         Text="Balance:" 

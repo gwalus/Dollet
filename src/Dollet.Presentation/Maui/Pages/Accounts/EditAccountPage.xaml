@@ -25,7 +25,7 @@
                 <Entry  
                 Placeholder="0.00"
                 Keyboard="Numeric"
-                Text="{Binding Account.Ammount, Mode=TwoWay}">
+                Text="{Binding Account.Ammount, Mode=TwoWay, StringFormat='{0:F2}'}">
                     <!--<Entry.Behaviors>
                         <toolkit:NumericValidationBehavior 
                             InvalidStyle="{DynamicResource InvalidEntryStyle}"

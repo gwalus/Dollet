@@ -14,7 +14,7 @@
             EventName="Appearing" 
             Command="{Binding AppearingCommand}"/>
     </ContentPage.Behaviors>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -28,7 +28,7 @@
                     Placeholder="0.00"
                     Keyboard="Numeric"
                     ReturnType="Next"
-                    Text="{Binding Ammount}">
+                    Text="{Binding Ammount, Mode=OneWayToSource}">
                     <!--<Entry.Behaviors>
                         <toolkit:NumericValidationBehavior 
                             InvalidStyle="{DynamicResource InvalidEntryStyle}"
