@@ -16,8 +16,10 @@ namespace Dollet.ViewModels.Accounts
 
         private decimal accountsBalance;
         public decimal AccountsBalance { get => accountsBalance; set => SetProperty(ref accountsBalance, value); }
-        
-        public string SelectedCurrency { get; set; }
+
+        // TODO: Get default from settings
+        private string selectedCurrency = "PLN";
+        public string SelectedCurrency { get => selectedCurrency; set => SetProperty(ref selectedCurrency, value); }
 
         public ObservableRangeCollection<Account> Accounts { get; } = [];
         public ObservableRangeCollection<Account> HiddenAccounts { get; } = [];

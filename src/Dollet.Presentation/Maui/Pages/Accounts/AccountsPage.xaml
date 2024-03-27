@@ -44,7 +44,9 @@
                         Title="PLN"
                         WidthRequest="50"
                         FontSize="Title"
-                        VerticalOptions="Center"
+                        TextColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource White}}"
+                        VerticalOptions="End"
+                        VerticalTextAlignment="End"
                         SelectedItem="{Binding SelectedCurrency}"
                         ItemsSource="{Binding Currencies}">
 
