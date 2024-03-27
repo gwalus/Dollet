@@ -42,6 +42,7 @@ namespace Dollet
                 .AddTransient<CategoriesPageViewModel>()
                 .AddTransient<IncomesPageViewModel>()
                 .AddTransient<ExpensesPageViewModel>()
+                .AddTransient<AddExpensePageViewModel>()
                 .AddTransient<ExpensesDetailsPageViewModel>()
                 .AddSingleton<InwestmentsPageViewModel>()
                 .AddSingleton<SettingsPageViewModel>();

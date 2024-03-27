@@ -20,7 +20,7 @@ namespace Dollet.ViewModels.Transactions.Expenses
 
         public List<ExpensesGroup> Expenses { get; private set; } = [];
 
-        public ExpensesPageViewModel(DolletDbContext dbContext)
+        public ExpensesPageViewModel()
         {
             Expenses.Add(new ExpensesGroup { Category = "Groceries", Amount = 10, Percent = 10, Icon = MaterialDesignIcons.Local_grocery_store });
             Expenses.Add(new ExpensesGroup { Category = "Activity", Amount = 50, Percent = 50, Icon = MaterialDesignIcons.Sports_baseball });
