@@ -31,18 +31,18 @@
             </Grid.RowDefinitions>
 
             <Frame Margin="15">
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <HorizontalStackLayout HorizontalOptions="Center">
                     <Label 
-                        Text="Sum:" 
+                        Text="Balance:" 
                         FontSize="Title" 
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        Margin="0, 0, 5, 0"/>
                     <Label 
-                        Text="{Binding AccountsBalance}"
+                        Text="{Binding AccountsBalance, StringFormat='{0:F2}'}"
                         FontSize="Title" 
                         VerticalOptions="Center"/>
                     <Picker
                         Title="PLN"
-                        WidthRequest="50"
                         FontSize="Title"
                         TextColor="{AppThemeBinding Light={DynamicResource Primary}, Dark={DynamicResource White}}"
                         VerticalOptions="End"
@@ -105,20 +105,26 @@
 
                                     <Label
                                         Grid.Column="2" Grid.Row="0"
-                                        Text="{Binding Ammount}"
+                                        Text="{Binding Ammount, StringFormat='{0:F2}'}"
                                         FontSize="20"
                                         Margin="0, 0, 15, 0"
                                         VerticalOptions="End"
                                         HorizontalOptions="End"/>
 
                                     <Label
-                                        Grid.Column="2" Grid.Row="1"
-                                        Text="{Binding Currency}"
+                                        Grid.Row="1"
+                                        Grid.Column="2" 
                                         FontSize="14"
                                         Margin="0, 0, 15, 0"
-                                        FontAttributes="Italic"
                                         VerticalOptions="Center"
-                                        HorizontalOptions="End"/>
+                                        HorizontalOptions="End">
+                                        
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Currency}" FontAttributes="Italic" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
